@@ -2,7 +2,7 @@
 
 ## Consultant Subsystem
 
-![V&V's](V&V_Diagrams/Consultant_Subsystem/AddOrder.svg)
+![V&V's](Consultant_Subsystem/AddOrder.svg)
 
 ![V&V's](V&V_Diagrams/Consultant_Subsystem/CancelOrder.svg)
 

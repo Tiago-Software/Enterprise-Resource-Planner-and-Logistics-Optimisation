@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FF9800</color>
+    <color name="colorPrimaryDark">#121211</color>
+    <color name="colorPrimaryLight">#070707</color>
+
+    <color name="colorAccent">#0B0A09</color>
+    <color name="colorAccentDark">#FF9800</color>
+    <color name="colorAccentText">#80000000</color>
+    <color name="colorAccentLight">#FF9800</color>
+    <color name="colorAccentToolBar">#FFFFFF</color>
+    <color name="colorAccentCamera">#00FFFFFF</color>
+    <color name="colorAccentTab">#131313</color>
+
+
+    <color name="grey_hard">#96989A</color>
+    <color name="grey_medium">#BDBFC1</color>
+    <color name="yellow_soft">#FF9800</color>
+    <color name="grey_dark">#FF9800</color>
+    <color name="grey_bg">#E6E6E6</color>
+    <color name="grey_text">#FF9800</color>
+    <color name="tab_indicator_color">#FFFFFF</color>
+    <color name="me_chat_bg">#FFE0B2</color>
+    <color name="bg_bottom_menu">#f2f2f2</color>
+
+    <color name="darkOverlay">#80000000</color>
+    <color name="darkOverlaySoft">#40000000</color>
+    <color name="whiteOverlay">#40FFFFFF</color>
+
+    <color name="bt_add_color">#FF9800</color> //circles
+
+    <!-- Screens background color-->
+    <color name="bg_screen1">#8955D1</color>
+    <color name="bg_screen2">#FDA52A</color>
+    <color name="bg_screen3">#e7b515</color>
+    <color name="bg_screen4">#50A50A</color>
+
+    <!-- cam scanner -->
+    <color name="barcode_reticle_background">#99000000</color>
+    <color name="barcode_reticle_stroke">#40000000</color>
+    <color name="barcode_field_value">#797979</color>
+    <color name="barcode_field_box_stroke">#757575</color>
+
+    <color name="white">#FFFFFFFF</color>
+    <color name="home_page_mode_item_subtitle">#CCFFFFFF</color>
+    <color name="reticle_ripple">#9AFFFFFF</color>
+    <color name="bounding_box_gradient_start">#00FFFFFF</color>
+    <color name="bounding_box_gradient_end">@color/white</color>
+    <color name="object_detected_bg_gradient_start">#00000000</color>
+    <color name="object_detected_bg_gradient_end">#66000000</color>
+    <color name="object_confirmed_bg_gradient_start">#40000000</color>
+    <color name="object_confirmed_bg_gradient_end">#A0000000</color>
+    <color name="object_reticle_outer_ring_fill">#1F000000</color>
+    <color name="object_reticle_outer_ring_stroke">#9AFFFFFF</color>
+    <color name="object_reticle_inner_ring">@color/white</color>
+    <color name="dark">#9A000000</color>
+
+    <color name="mapboxWhite">#ffffff</color>
+    <color name="mapboxBlue">#4264fb</color>
+    <color name="mapboxGrayLight">#c6d2e1</color>
+
+</resources>

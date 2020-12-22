@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/spacing_middle"
+            android:paddingLeft="@dimen/spacing_large"
+            android:paddingTop="@dimen/spacing_middle">
+
+            <ImageView
+                android:id="@+id/photo"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:src="@drawable/lotto"
+                app:srcCompat="@drawable/lotto" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@android:color/white"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/spacing_middle"
+            android:paddingBottom="@dimen/spacing_middle">
+
+
+
+            <TextView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="@dimen/spacing_medium"
+                android:background="@drawable/button_add"
+                android:clickable="true"
+                android:text="0"
+                android:textSize="20dp"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="@dimen/spacing_medium"
+                android:background="@drawable/button_add"
+                android:clickable="true"
+                android:text="0"
+                android:textSize="20dp"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="@dimen/spacing_medium"
+                android:background="@drawable/button_add"
+                android:clickable="true"
+                android:text="0"
+                android:textSize="20dp"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="@dimen/spacing_medium"
+                android:background="@drawable/button_add"
+                android:clickable="true"
+                android:text="0"
+                android:textSize="20dp"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="@dimen/spacing_medium"
+                android:background="@drawable/button_add"
+                android:clickable="true"
+                android:text="0"
+                android:textSize="20dp"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="@dimen/spacing_medium"
+                android:background="@drawable/button_add"
+                android:clickable="true"
+                android:text="0"
+                android:textSize="20dp"
+                android:textAlignment="center"/>
+
+
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/text_content"
+            android:layout_width="match_parent"
+            android:layout_height="21dp"
+            android:minHeight="@dimen/spacing_xlarge"
+            android:text="Date"
+            android:textColor="@color/grey_dark"
+            android:visibility="visible"
+            android:textAlignment="center"/>
+
+    </LinearLayout>
+
+</LinearLayout>
+
+

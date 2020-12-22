@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="150dp">
+
+    <com.balysv.materialripple.MaterialRippleLayout
+        android:id="@+id/lyt_parent"
+        style="@style/RippleStyleWhite"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_margin="@dimen/spacing_medium"
+        android:minHeight="@dimen/recycler_item_size">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                android:background="@android:color/darker_gray" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:padding="@dimen/spacing_middle">
+
+                <TextView
+                    android:id="@+id/Status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="285dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginEnd="-13dp"
+                    android:paddingBottom="@dimen/spacing_middle"
+                    android:text="Order Status: "
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/ETAtimee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="250dp"
+                    android:layout_marginTop="-5dp"
+                    android:layout_marginEnd="-5dp"
+                    android:paddingBottom="@dimen/spacing_middle"
+                    android:text="ETA: 57 minutes "
+                    android:visibility="gone"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textSize="15sp" />
+
+
+                <TextView
+                    android:id="@+id/DeliverByDate"
+                    android:layout_width="138dp"
+                    android:layout_height="34dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="255dp"
+                    android:layout_marginTop="23dp"
+                    android:layout_marginEnd="0dp"
+                    android:paddingBottom="@dimen/spacing_middle"
+                    android:text="2020/08/16 15:00:00 "
+                    android:visibility="gone"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/ClientBusname"
+                    android:layout_width="246dp"
+                    android:layout_height="35dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="49dp"
+                    android:layout_marginEnd="147dp"
+                    android:paddingBottom="@dimen/spacing_middle"
+                    android:text="Client: "
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                <TextView
+                    android:id="@+id/ClientStreet"
+                    android:layout_width="269dp"
+                    android:layout_height="50dp"
+                    android:layout_below="@+id/ClientBusname"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="85dp"
+                    android:layout_marginEnd="124dp"
+                    android:textSize="15sp"
+                    android:paddingBottom="@dimen/spacing_middle"
+                    android:text="Client Suburb: "
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                <CheckBox
+                    android:id="@+id/chckbxComplete"
+                    android:layout_width="118dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="-13dp"
+                    android:layout_marginBottom="63dp"
+                    android:text="Complete" />
+
+                <CheckBox
+                    android:id="@+id/chckbxCanceled"
+                    android:layout_width="118dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="-13dp"
+                    android:layout_marginBottom="33dp"
+                    android:text="Cancelled" />
+
+                <CheckBox
+                    android:id="@+id/chckbxDelayed"
+                    android:layout_width="118dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="-13dp"
+                    android:layout_marginBottom="3dp"
+                    android:text="Postponed" />
+
+                <TextView
+                    android:id="@+id/order"
+                    android:layout_width="wrap_content"
+                    android:layout_height="55dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="-13dp"
+                    android:text="Order NO. 1"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                    android:textColor="@android:color/white"
+                    android:textSize="40sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </com.balysv.materialripple.MaterialRippleLayout>
+</RelativeLayout>

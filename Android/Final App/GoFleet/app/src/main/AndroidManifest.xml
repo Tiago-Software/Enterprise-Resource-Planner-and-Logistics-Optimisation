@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.app.sample.GoFleetNavigation">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-feature android:name="android.hardware.camera2.full" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"></uses-permission>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
+
+
+    <application
+        android:name="com.app.sample.GoFleetNavigation.data.GlobalVariable"
+        android:allowBackup="true"
+        android:icon="@drawable/gofleetlogo"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+
+        <activity
+            android:name="com.app.sample.GoFleetNavigation.ActivityMain"
+
+            android:configChanges="orientation"
+            android:screenOrientation="fullSensor"
+
+           android:theme="@style/Theme.Design.NoActionBar"
+
+
+            android:label="@string/app_name">
+        </activity>
+        <activity android:name="com.app.sample.GoFleetNavigation.ActivityCamera" android:screenOrientation="fullSensor" ><intent-filter><action android:name="android.intent.action.VIEW">
+
+        </action></intent-filter></activity>
+
+        <activity
+            android:name="com.app.sample.GoFleetNavigation.ActivitySplash"
+            android:windowSoftInputMode="stateVisible|adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="com.app.sample.GoFleetNavigation.ActivityHelp">
+
+        </activity>
+
+        <activity android:name="com.app.sample.GoFleetNavigation.ActivityOrderDetails">
+
+        </activity>
+
+        <activity android:name="com.app.sample.GoFleetNavigation.ActivityOrderInfomation">
+
+        </activity>
+
+        <activity android:name="com.app.sample.GoFleetNavigation.MapActivity">
+
+        </activity>
+
+        <activity android:name="com.app.sample.GoFleetNavigation.WaypointNavigationActivity">
+
+        </activity>
+
+        <activity android:name="com.app.sample.GoFleetNavigation.ActivityRouteFinished">
+
+        </activity>
+
+        <activity android:name="com.app.sample.GoFleetNavigation.ActivityDelayedOrders">
+
+        </activity>
+
+        <activity android:name="com.app.sample.GoFleetNavigation.WayPointNaviagtionRealStart">
+
+        </activity>
+
+        <activity android:name="com.google.mlkit.md.LiveBarcodeScanningActivity">
+
+        </activity>
+
+        <activity android:name=".ActivityPastOrderDetails">
+
+        </activity>
+
+        <activity android:name=".ActivityLogin">
+
+        </activity>
+
+        <activity android:name=".ActivityRouteShowCase">
+
+        </activity>
+
+        <activity android:name=".MapActivityF">
+
+        </activity>
+
+
+
+
+
+
+        <meta-data
+            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+            android:value="ocr" />
+
+
+    </application>
+
+</manifest>

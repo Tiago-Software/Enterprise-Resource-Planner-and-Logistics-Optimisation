@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:ignore="ContentDescription">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_form2" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:minWidth="400dp"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_xlarge">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GoFleet"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:paddingBottom="50dp"
+                android:textColor="@color/colorAccentDark"
+                android:contentDescription="@string/AppLogo" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <EditText
+                            android:id="@+id/input_username"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/spacing_xxlarge"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:hint="Username"
+                            android:singleLine="true"
+                            android:textColor="@color/yellow_soft"
+                            android:textColorHint="@color/grey_medium">
+
+                        <requestFocus />
+                    </EditText>
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_form_people"
+                        android:tint="@android:color/white" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@android:color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <EditText
+                            android:id="@+id/input_password"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/spacing_xxlarge"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:hint="Password"
+                            android:inputType="textPassword"
+                            android:singleLine="true"
+                            android:textColor="@color/yellow_soft"
+                            android:textColorHint="@color/grey_medium" />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_form_lock"
+                        android:tint="@android:color/white" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@android:color/white" />
+            </LinearLayout>
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                style="@style/RippleStyleBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/spacing_large">
+
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <Button
+                android:id="@+id/btn_signin"
+                style="@style/Base.Widget.AppCompat.Button.Borderless"
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:textColor="@android:color/white"
+                android:text="LOGIN" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

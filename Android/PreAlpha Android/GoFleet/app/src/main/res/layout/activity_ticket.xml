@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:background="@android:color/white">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbarTicket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarTicket"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorAccentToolBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ticket Page"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_marginStart="0dp"
+                android:textColor="@color/colorAccentDark"
+                android:contentDescription="@string/AppLogo" />
+
+        </androidx.appcompat.widget.Toolbar>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorAccentDark"
+            app:layout_anchor="@+id/toolbar"
+            app:layout_anchorGravity="bottom|center" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:backgroundTint="#f45454">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:backgroundTint="#f45454"
+            android:src="@drawable/lotto" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/spacing_mlarge"
+        android:layout_marginRight="@dimen/spacing_middle"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/lottoresults"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Results"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@color/colorAccentText" />
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@android:color/white"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+
+            <TextView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="@dimen/spacing_medium"
+                android:background="@drawable/button_add"
+                android:clickable="true"
+                android:text="10"
+                android:textSize="20dp"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="@dimen/spacing_medium"
+                android:background="@drawable/button_add"
+                android:clickable="true"
+                android:text="23"
+                android:textSize="20dp"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="@dimen/spacing_medium"
+                android:background="@drawable/button_add"
+                android:clickable="true"
+                android:text="05"
+                android:textSize="20dp"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="@dimen/spacing_medium"
+                android:background="@drawable/button_add"
+                android:clickable="true"
+                android:text="32"
+                android:textSize="20dp"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="@dimen/spacing_medium"
+                android:background="@drawable/button_add"
+                android:clickable="true"
+                android:text="29"
+                android:textSize="20dp"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="@dimen/spacing_medium"
+                android:background="@drawable/button_add"
+                android:clickable="true"
+                android:text="41"
+                android:textSize="20dp"
+                android:textAlignment="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:backgroundTint="#f45454"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:id="@+id/txtDrawDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Draw Date: "
+                android:textColor="@color/colorAccentText" />
+            <TextView
+                android:id="@+id/drawDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 02/02/2020"
+                android:textColor="@color/colorAccentText" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:backgroundTint="#f45454"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:id="@+id/txtEstWinnings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Estimate Winnings: "
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="@color/colorAccentText" />
+            <TextView
+                android:id="@+id/EstimateWinnings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="R14 000 000"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="@color/colorAccentText" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Boards"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+            android:textColor="@color/colorAccentText"
+            />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/grey_bg" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewTicket"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:scrollbars="vertical" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:backgroundTint="#f45454"
+        android:paddingBottom="20dp">
+
+        <TextView
+            android:id="@+id/txtScanDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scan Date: "
+            android:textColor="@color/grey_dark" />
+        <TextView
+            android:id="@+id/ScanDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_dark" />
+
+    </LinearLayout>
+
+</LinearLayout>

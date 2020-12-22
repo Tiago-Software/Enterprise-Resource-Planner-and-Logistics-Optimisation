@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+<item>
+    <shape
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:innerRadius="0dp"
+        android:shape="ring"
+        android:thicknessRatio=".77"
+        android:useLevel="false">
+        <solid android:color="#00FFFFFF"/>
+        <stroke
+            android:width="10dp"
+            android:color="#E9CA00"></stroke>
+    </shape>
+</item>
+<item android:drawable="@drawable/ic_tab_gallery"/>
+</layer-list>

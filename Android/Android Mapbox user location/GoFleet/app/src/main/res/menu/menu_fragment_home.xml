@@ -1,0 +1,31 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_new_feed"
+        android:icon="@drawable/ic_more"
+        android:orderInCategory="100"
+        android:title="Menu Direct"
+        android:iconTint="@color/colorPrimaryDark"
+        app:showAsAction="ifRoom" >
+
+        <menu>
+
+            <item
+                android:id="@+id/action_logout"
+                android:orderInCategory="100"
+                android:title="Logout"
+                app:showAsAction="never" />
+
+            <item
+                android:id="@+id/action_help"
+                android:orderInCategory="100"
+                android:title="About"
+                app:showAsAction="never" />
+
+        </menu>
+
+    </item>
+
+
+</menu>

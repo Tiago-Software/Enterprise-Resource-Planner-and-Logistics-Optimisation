@@ -1,0 +1,179 @@
+<resources>
+
+    <style name="AppTheme" parent="BaseTheme"/>
+
+    <style name="BaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item> 
+        <item name="colorPrimaryDark">@color/darkOverlaySoft</item> 
+        <item name="colorControlHighlight">@color/colorPrimary</item> 
+        <item name="colorAccent">@color/colorPrimary</item>
+        <!--control color-->
+        <!--<item name="colorControlNormal">@color/colorPrimary</item>-->
+        <!--<item name="colorControlActivated">@color/colorAccent</item>-->
+        <!--<item name="colorControlHighlight">@color/colorAccentLight</item>-->
+    </style>
+
+    <style name="BarcodeTheme" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/grey_text</item>
+        <item name="colorControlHighlight">@color/colorPrimary</item>
+        <item name="colorAccent">@color/grey_text</item>
+    </style>
+
+    <style name="FabStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">bottom|right</item>
+        <item name="android:layout_margin">15dp</item>
+        <item name="borderWidth">0dp</item>
+        <item name="elevation">6dp</item>
+        <item name="rippleColor">@android:color/white</item>
+    </style>
+
+    <style name="TitleWithShadow">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:shadowColor">@color/grey_dark</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">5</item>
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" >
+        <item name="colorControlNormal">@android:color/holo_blue_dark</item>
+    </style>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Widget.CardContent" parent="android:Widget">
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingTop">24dp</item>
+        <item name="android:paddingBottom">24dp</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="TextAppearance.CardContent.Headline.Medium" parent="">
+        <item name="android:textColor">@color/grey_dark</item>
+        <item name="android:textSize">@dimen/abc_text_size_title_material</item>
+    </style>
+
+    <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">@android:color/transparent</item>
+        <item name="tabIndicatorHeight">4dp</item>
+        <item name="tabPaddingStart">12dp</item>
+        <item name="tabPaddingEnd">12dp</item>
+        <item name="tabBackground">?attr/selectableItemBackground</item>
+        <item name="tabTextAppearance">@style/MyCustomTabTextAppearance</item>
+        <item name="tabSelectedTextColor">?android:textColorPrimary</item>
+    </style>
+
+    <style name="MyCustomTabDefaultLayout" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">@color/grey_text</item>
+        <item name="tabIndicatorHeight">3dp</item>
+        <item name="tabPaddingStart">12dp</item>
+        <item name="tabPaddingEnd">12dp</item>
+        <item name="tabBackground">?attr/selectableItemBackground</item>
+        <item name="tabTextAppearance">@style/TextAppearance.AppCompat.Subhead</item>
+    </style>
+
+    <style name="MyCustomTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">?android:textColorSecondary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="textAllCaps">true</item>
+    </style>
+    <style name="RippleStyleWhite">
+        <item name="mrl_rippleOverlay">true</item>
+        <item name="mrl_rippleColor">#80FFFFFF</item>
+        <item name="mrl_rippleDelayClick">true</item>
+        <item name="mrl_rippleHover">true</item>
+        <item name="mrl_rippleAlpha">0.2</item>
+    </style>
+    <style name="RippleStyleBlack" parent="RippleStyleWhite">
+        <item name="mrl_rippleColor">#800A7DEF</item>
+    </style>
+
+<!--    <style name="DrawerArrowToggle" parent="@style/Widget.AppCompat.DrawerArrowToggle">-->
+<!--        <item name = "spinBars">true</item>-->
+<!--        <item name="color">@android:color/darker_gray</item>-->
+<!--    </style>-->
+
+    <style name="CustomNavigationViewLight" parent="NavigationViewLight">
+        <!-- The main turn banner view at the top of the screen -->
+        <!-- Background color of the banner -->
+        <item name="navigationViewBannerBackground">#FFFFFF</item>
+        <!-- Color for the primary label that displays the turn name -->
+        <item name="navigationViewBannerPrimaryText">#37516F</item>
+        <!-- Color for the secondary label that occasionally appears underneath the primary label -->
+        <item name="navigationViewBannerSecondaryText">#E637516F</item>
+        <!-- Primary color for the turn arrow icons-->
+        <item name="navigationViewBannerManeuverPrimary">#37516F</item>
+        <!-- Secondary color for the turn arrow icons (e.g. the line segment that forks off) -->
+        <item name="navigationViewBannerManeuverSecondary">#4D37516F</item>
+        <!-- Alternate background color for the dropdown list of upcoming steps -->
+        <item name="navigationViewListBackground">#FAF7F7</item>
+
+        <!-- The summary view along the bottom of the screen -->
+        <!-- Background color of the summary view -->
+        <item name="navigationViewPrimary">#FFFFFF</item>
+        <!-- Tint color for icons in the summary view -->
+        <item name="navigationViewSecondary">#28353D</item>
+        <!-- Accent color for elements such as the recenter button -->
+        <item name="navigationViewAccent">#FF9800</item>
+        <!-- Color for the main duration label in the summary view -->
+        <item name="navigationViewPrimaryText">#424242</item>
+        <!-- Color for the secondary distance and ETA label in the summary view -->
+        <item name="navigationViewSecondaryText">#424242</item>
+
+        <!-- Custom colors for progress bars displayed during navigation -->
+        <item name="navigationViewProgress">#FF9800</item>
+        <item name="navigationViewProgressBackground">#39587B</item>
+
+        <!-- Custom colors for the route line and traffic -->
+        <item name="navigationViewRouteStyle">@style/CustomNavigationMapRoute</item>  <!-- custom route color-->
+
+        <!-- Map style -->
+        <item name="navigationViewMapStyle">mapbox://styles/mapbox/navigation-guidance-day-v2</item>
+
+<!--        &lt;!&ndash; Other components &ndash;&gt;-->
+<!--        <item name="navigationViewDivider">#4882C6</item>-->
+<!--        <item name="navigationViewRouteOverviewDrawable">#FBF8F8</item>-->
+<!--        <item name="navigationViewDestinationMarker">@drawable/map_marker_light</item>-->
+<!--        <item name="navigationViewLocationLayerStyle">@style/NavigationLocationLayerStyle</item>-->
+    </style>
+
+    <style name="CustomNavigationMapRoute">
+        <!-- Color of the primary route -->
+        <item name="routeColor">#FF9800</item>
+
+        <!-- Color of moderate traffic congestion on primary route -->
+        <item name="routeModerateCongestionColor">@color/mapbox_navigation_route_layer_congestion_yellow</item>
+
+        <!-- Color of severe traffic congestion on primary route -->
+        <item name="routeSevereCongestionColor">@color/mapbox_navigation_route_layer_congestion_red</item>
+        <!-- Color of primary route shield -->
+        <item name="routeShieldColor">#FF9800</item>
+
+        <!-- Color of alternative route -->
+        <item name="alternativeRouteColor">@color/mapbox_navigation_route_alternative_color</item>
+
+        <!-- Color of moderate traffic congestion on alternate route -->
+        <item name="alternativeRouteModerateCongestionColor">@color/mapbox_navigation_route_alternative_congestion_yellow</item>
+
+        <!-- Color of severe traffic congestion on alternate route -->
+        <item name="alternativeRouteSevereCongestionColor">@color/mapbox_navigation_route_alternative_congestion_red</item>
+        <!-- Color of alternative route shield -->
+        <item name="alternativeRouteShieldColor">@color/mapbox_navigation_route_alternative_shield_color</item>
+        <!-- Scaling factor of primary route line -->
+        <item name="routeScale">1.0</item>
+        <!-- Scaling factor of traffic on route line -->
+        <!-- Scaling factor of alternative route line -->
+        <item name="alternativeRouteScale">1.0</item>
+        <!-- Color of upcoming maneuver arrow -->
+        <item name="upcomingManeuverArrowColor">@color/mapbox_navigation_route_upcoming_maneuver_arrow_color</item>
+        <!-- Color of upcoming maneuver arrow border -->
+        <item name="upcomingManeuverArrowBorderColor">@color/mapbox_navigation_route_upcoming_maneuver_arrow_border_color</item>
+        <!-- Expression styling -->
+        <item name="roundedLineCap">true</item>
+    </style>
+
+
+</resources>

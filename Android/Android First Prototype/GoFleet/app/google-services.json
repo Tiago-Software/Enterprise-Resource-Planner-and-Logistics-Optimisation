@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "766281883108",
+    "firebase_url": "https://lotto-api-check.firebaseio.com",
+    "project_id": "lotto-api-check",
+    "storage_bucket": "lotto-api-check.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:766281883108:android:0666a52cee7560d8fabbf1",
+        "android_client_info": {
+          "package_name": "com.app.sample.insta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "766281883108-slbmb0aignsqh78ckan2mub5bphbc0vh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.sample.insta",
+            "certificate_hash": "4ed13a31872941dd68f99e26a1041b9a603b1471"
+          }
+        },
+        {
+          "client_id": "766281883108-5dm789jpp3rgo3go73k0jgsq5joivlnv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.sample.insta",
+            "certificate_hash": "a7545d04a61c6538bfcaf83b1520c0592f32ca39"
+          }
+        },
+        {
+          "client_id": "766281883108-4937lbd734cg3tb0ituvksrsom69hj5t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCE7zd_adIkcQneDq9pg5Y4jcBEWGL2K7k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "766281883108-4937lbd734cg3tb0ituvksrsom69hj5t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

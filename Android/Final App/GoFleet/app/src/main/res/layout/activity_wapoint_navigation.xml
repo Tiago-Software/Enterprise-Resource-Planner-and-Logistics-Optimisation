@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <com.mapbox.services.android.navigation.ui.v5.NavigationView
+        android:id="@+id/navigationView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:navigationLightTheme="@style/CustomNavigationViewLight">
+
+    </com.mapbox.services.android.navigation.ui.v5.NavigationView>
+
+    <Button
+        android:id="@+id/btnFinishRoute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:text="Finish Route"
+        android:clickable="false"
+        android:visibility="invisible"
+        android:background="@color/mapbox_blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+<!--    <Button-->
+<!--        android:id="@+id/btnDelayOrderFromNav"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginBottom="45dp"-->
+<!--        android:text="Delay Route"-->
+<!--        android:background="@color/mapbox_blue"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/btnFinishRoute"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        />-->
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabDelay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FF0000"
+        android:clickable="true"
+        android:onClick="DelayOrderFromNav"
+        android:src="@drawable/ic_clear"
+        android:tint="@android:color/black"
+        android:visibility="visible"
+        android:layout_marginBottom="3dp"
+        app:layout_constraintBottom_toTopOf="@+id/fabCompleteOrder"
+        tools:ignore="MissingConstraints" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabCompleteOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_mlarge"
+        android:backgroundTint="@android:color/holo_green_light"
+        android:clickable="true"
+        android:src="@drawable/ic_tick"
+        android:visibility="visible"
+        android:onClick="FinishNavigation"
+        app:layout_constraintBottom_toTopOf="@+id/btnFinishRoute"
+        tools:ignore="MissingConstraints" />
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>

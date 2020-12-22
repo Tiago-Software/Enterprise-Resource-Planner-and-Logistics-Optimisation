@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.app.sample.insta">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-feature android:name="android.hardware.camera2.full" />
+
+
+    <application
+        android:name=".data.GlobalVariable"
+        android:allowBackup="true"
+        android:icon="@drawable/gofleetlogo"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+
+        <activity
+            android:name=".ActivityMain"
+
+            android:configChanges="orientation"
+            android:screenOrientation="fullSensor"
+
+           android:theme="@style/Theme.Design.NoActionBar"
+
+
+            android:label="@string/app_name">
+        </activity>
+        <activity android:name=".ActivityCamera" android:screenOrientation="fullSensor" ><intent-filter><action android:name="android.intent.action.VIEW">
+
+        </action></intent-filter></activity>
+        <activity android:name=".ActivityTicket" android:screenOrientation="fullSensor"><intent-filter><action android:name="android.intent.action.VIEW">
+
+        </action></intent-filter></activity>
+        <activity
+            android:name=".ActivityLogin"
+            android:windowSoftInputMode="stateVisible|adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ActivityHelp">
+
+        </activity>
+
+        <activity android:name=".ActivityOrderDetails">
+
+        </activity>
+
+        <activity android:name=".ActivityOrderInfomation">
+
+        </activity>
+
+        <meta-data
+            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+            android:value="ocr" />
+
+        <activity
+                android:name=".LiveBarcodeScanningActivity"
+                android:theme="@style/BarcodeTheme" />
+
+    </application>
+
+</manifest>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#0347F4">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="center"
+        app:srcCompat="@drawable/gofleetlogog"
+    />
+
+    <TextView
+        android:layout_width="269dp"
+        android:layout_height="73dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:layout_marginEnd="69dp"
+        android:layout_marginBottom="77dp"
+        android:text="@string/slide_17_desc"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        android:textColor="#F8F3F3"
+        android:textSize="30sp" />
+
+    <TextView
+        android:layout_width="393dp"
+        android:layout_height="157dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="568dp"
+        android:text="GoFleet Navigation"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="#F8F8F8"
+        android:textSize="35sp"
+        android:textStyle="bold" />
+</RelativeLayout>

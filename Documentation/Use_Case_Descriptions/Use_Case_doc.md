@@ -1,6 +1,6 @@
 # Use cases
 
-![Manager Subsystem](Use_Case_Descriptions/images/Manager.svg)
-![Consultant Subsystem](Use_Case_Descriptions/images/Consultant.svg)
-![Driver Subsystem](Use_Case_Descriptions/images/Driver.svg)
-![Optimisation Subsystem](Use_Case_Descriptions/images/Optimisation%20subsystem.svg)
+![Manager Subsystem](images/Manager.svg)
+![Consultant Subsystem](images/Consultant.svg)
+![Driver Subsystem](images/Driver.svg)
+![Optimisation Subsystem](images/Optimisation%20subsystem.svg)

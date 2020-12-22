@@ -1,0 +1,24 @@
+project:
+    name: Go-Fleet
+    
+content:
+    - source: Deliverable_Documentation/1-Introduction.md
+    - source: Deliverable_Documentation/2-Problem_Statement_and_Proposed_Solution.md
+    - source: Use_Case_Descriptions/Use_Case_doc.md
+    - source: Component_deployment_diagram/Component_Deployment_Diagram.md
+    - source: V&V_Diagrams/V&V's.md
+
+appendices:
+    - source: Gantt_Chart/Go-fleet-Gant.pdf
+    - source: Gantt_Chart/Go-fleet-gantt2.pdf
+    - source: Gantt_Chart/Go-fleet-gantt3.pdf
+    - source: Gantt_Chart/Go-fleet-gantt4.pdf
+    - source: Gantt_Chart/Go-fleet-gantt5.pdf
+
+theme:
+    headings:
+        font-family: Open Sans
+        color: "#000000"
+    text:
+        font-family: Open Sans
+        color: "#000000"

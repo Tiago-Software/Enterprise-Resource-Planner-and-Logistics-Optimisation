@@ -1,0 +1,29 @@
+tsp
+notes-
+* there are a set of locations per route	// 5 in this case
+* the lesser amount of locations populated in a route contribute to lesser amount of change in the population of routes generated
+* probability of mutations is specified, a higher probability of mutation contributes to a more diversified outcome by doing more mutations per generation
+* more mutations per generation give us in-depth analyses per route 
+*a problem we now face is called the local optimum problem:
+  key trade off where we consider exploitation vs exploration and each aspect has its own local optimum which dont contribute to the global optimum.
+* Due the tsp being a heuristic approach, it wont always find the globally optimal solution, but will always give a good one at a fast pace.
+ 
+1- generate multiple routes randomly with locations populated randomly		// generated 3 and populated 5
+2-	a) Calculate the fitness of each route (1/distance) 	//shorter the distance the higher the fitness
+	b) Select two routes based on the fitness level		//the higher the fitness the higher the chance of being selected
+3- Crossover the routes and create a new child route
+	a) Select two sequential locations from a route chose in 2b
+	b) index the locations in 3a in the same order from the route 
+	   in 2b into the new child route.
+	c) fill each node in child route with remaining locations from
+ 	   start to end index from the second route chosen in 2b
+4- Mutate the new child route 
+	a) iterate over each city to see each cities 		//each city is given a 5% chance of being swapped(this is mutation)
+           probabilty of mutation	
+	b) randomly select two cities and mutate the child node
+	   (swap the city index with the other city index)
+5- Add child node to next generation of routes the same size as the first
+6- Repeat until the generation of nodes match the next generation 
+reference
+https://www.youtube.com/watch?v=XP8R0yzAbdo
+visualisation simulation - https://github.com/ptrkkim/Genetic-Algo-Tech-Talk

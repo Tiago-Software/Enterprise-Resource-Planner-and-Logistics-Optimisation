@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-12">
+
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="mb-4">{{'maps.google' | translate}}</h5>
+        <agm-map class="map-item" [latitude]="-34.397" [longitude]="150.644" [zoom]="8" [disableDefaultUI]="false"
+           (mapClick)="mapClicked($event)">
+          <agm-marker [latitude]="-34.397" [longitude]="150.644">
+          </agm-marker>
+        </agm-map>
+      </div>
+    </div>
+
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="mb-4">{{'maps.yandex' | translate}}</h5>
+        <div class="map-item">
+       
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

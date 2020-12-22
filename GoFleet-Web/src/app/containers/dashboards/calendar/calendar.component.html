@@ -1,0 +1,45 @@
+<div class="card">
+  <div class="card-body">
+      <h5 class="card-title">{{'dashboards.calendar' | translate}}</h5>
+      <div class="row">
+        <div class="col-md-4">
+          <p class="mb-0 pt-2">{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</p>
+        </div>
+        <div class="col-md-8 text-right">
+          <button type="button" class="btn btn-primary btn-sm" mwlCalendarToday [(viewDate)]="viewDate">Today</button>{{" "}}
+          <button type="button" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" class="btn btn-outline-primary calendar-nav-button icon-button small-icon" aria-label="prev"><span class="simple-icon-arrow-left"></span></button>{{" "}}
+          <button type="button" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" class="btn btn-outline-primary calendar-nav-button icon-button small-icon" aria-label="next"><span class="simple-icon-arrow-right"></span></button>
+        </div>
+      </div>
+      <br />
+      <div [ngSwitch]="view">
+        <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events"
+          [refresh]="refresh"
+          (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)" weekStartsOn="1">
+        </mwl-calendar-month-view>
+      </div>
+  </div>
+</div>
+
+<ng-template #modalContent>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">{{modalData?.event.title}}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="mb-3">
+      <div class="text-small font-weight-semibold text-muted mb-1">START</div>
+      <div>{{ modalData?.event.start.toLocaleDateString() }}</div>
+    </div>
+    <div class="mb-3" *ngIf="modalData?.event.end">
+      <div class="text-small font-weight-semibold text-muted mb-1">END</div>
+      <div>{{ modalData?.event.end.toLocaleDateString() }}</div>
+    </div>
+    <div>
+      <div class="text-small font-weight-semibold text-muted mb-1">DETAIL</div>
+      <div>{{ modalData?.event.meta }}</div>
+    </div>
+  </div>
+</ng-template>

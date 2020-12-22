@@ -1,0 +1,10 @@
+.tab-pane:top .tab-header-area .headers-region .tab:top
+{
+	-fx-background-color: "white"
+}
+
+.text-area .scroll-pane:fitToWidth:fitToHeight .viewport .content
+{
+	-fx-background-color: "white"
+}
+

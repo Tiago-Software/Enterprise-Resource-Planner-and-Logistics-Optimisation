@@ -1,0 +1,60 @@
+
+
+<div class="row">
+  <div class="col-12">
+
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="mb-4">{{'maps.google' | translate}}</h5>
+        <div id="map">
+        <agm-map  class="map-item"  [latitude]="-25.925063" [longitude]="28.191817" [zoom]="8" [disableDefaultUI]="false"
+           (mapClick)="mapClicked($event)">
+          <agm-marker  [latitude]="this.branch[this.branchcount].branch_Location.location_Latitude" [longitude]="this.branch[this.branchcount].branch_Location.location_Longitude">
+            <agm-info-window>
+                <h3><strong>{{this.branch[this.branchcount].branch_Name}}</strong></h3>
+            </agm-info-window>
+          </agm-marker>
+
+          <!-- <div *ngFor="let uOrders of this.manOrders; let iroutes=index">
+          <agm-marker   
+          *ngFor="let uOrders of this.manOrders[iroutes].orders; let iorder=index"
+          [latitude]="this.manOrders[iroutes].orders[iorder].location.location_Latitude" 
+          [longitude]="this.manOrders[iroutes].orders[iorder].location.location_Longitude">
+            <agm-info-window>
+              <h3>Order Id: <strong>{{this.manOrders[iroutes].orders[iorder].order_Id}}</strong></h3>
+              <h3>Sequence number: <strong>{{this.manOrders[iroutes].orders[iorder].order_Sequence_Number}}</strong></h3>
+            </agm-info-window>
+          </agm-marker>
+        </div> -->
+
+        <agm-marker
+        *ngFor="let marker of markers"
+        [latitude]="marker.lat"
+        [longitude]="marker.lng"
+        [opacity]="marker.alpha"
+        [markerDraggable]="true"
+        (markerClick)="selectMarker($event)"
+      >
+      </agm-marker>
+
+
+      <agm-rectangle
+        [north]="max('lat')"
+        [east]="max('lng')"
+        [south]="min('lat')"
+        [west]="min('lng')"
+      >
+      </agm-rectangle>
+      
+        </agm-map>
+
+
+      </div>
+    </div>
+    </div>
+
+  </div>
+</div>
+
+
+

@@ -1,0 +1,32 @@
+<div class="card auth-card">
+  <div class="position-relative image-side ">
+ 
+  </div>
+  <div class="form-side">
+    <a class="c-pointer">
+       <span class="logo-mobile"></span> 
+    </a>
+    <h6 class="mb-4">Login</h6>
+
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <label class="form-group has-float-label">
+        <input class="form-control" formControlName ="emp_Log_Email" placeholder="Email" type="email" />
+    
+        <div *ngIf="email.touched && email.errors?.required" class="invalid-tooltip">Email is required!</div>
+      </label>
+      <label class="form-group has-float-label">
+        <input class="form-control" type="password" placeholder="Password" formControlName ="emp_Log_Password"/>
+     
+        <div *ngIf="password.touched && password.errors?.required" class="invalid-tooltip">Password is required!</div>
+      </label>
+      <div class="d-flex justify-content-between align-items-center">
+        <a routerLink="/user/forgot-password">{{ 'user.forgot-password' | translate }}?</a>
+        <app-state-button [btnClass]="'btn btn-primary btn-lg btn-shadow'" [currentState]="buttonState"
+          [isDisabled]="buttonDisabled">
+          {{ 'user.login-button' | translate | uppercase }}
+        </app-state-button>
+      </div>
+    </form>
+
+  </div>
+</div>

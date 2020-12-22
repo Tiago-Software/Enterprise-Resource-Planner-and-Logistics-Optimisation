@@ -1,0 +1,42 @@
+<h5 class="mb-4">{{ 'wizard.icons' | translate }}</h5>
+<div class="card">
+  <div class="card-body">
+    <aw-wizard #wizard [navBarLayout]="'large-empty-symbols'" navigateForward="allow">
+      <aw-wizard-step awOptionalStep  [canExit]="true" navigateForward stepTitle="Submitted" style="min-height: 10px;">
+        <ng-template awWizardStepSymbol><i class="iconsminds-inbox-into"></i></ng-template>
+      </aw-wizard-step>
+      <aw-wizard-step awOptionalStep  stepTitle="Assigned" style="min-height: 10px;">
+        <ng-template awWizardStepSymbol><i class="iconsminds-checkout"></i></ng-template>
+      </aw-wizard-step>
+      <aw-wizard-step awOptionalStep stepTitle="En Route" style="min-height: 10px;">
+        <ng-template awWizardStepSymbol><i class="iconsminds-traffic-light"></i></ng-template>
+        <!-- <div>
+          <div class="form-group">
+            <label>{{ 'forms.city' | translate }}</label>
+            <input type="text" class="form-control" name="name">
+          </div>
+          <div class="form-group">
+            <label>{{ 'forms.address' | translate }}</label>
+            <textarea class="form-control" rows="2"></textarea>
+          </div>
+        </div>
+        <div class="text-center">
+          <button type="button" class="btn btn-primary" awPreviousStep>{{ 'wizard.prev' | translate }}</button>{{" "}}
+          <button type="button" class="btn btn-primary" awNextStep>{{ 'wizard.next' | translate }}</button>
+        </div> -->
+      </aw-wizard-step>
+      <aw-wizard-step awOptionalStep stepTitle="Arrived" style="min-height: 230px;">
+        <ng-template awWizardStepSymbol><i class="iconsminds-location-2"></i></ng-template>
+      </aw-wizard-step>
+      <aw-wizard-completion-step [canExit]="true" [canEnter]="true" [stepId]="4" stepTitle="{{ 'Delivered' | translate }}" style="min-height: 230px;">
+        <ng-template awWizardStepSymbol><i class="simple-icon-check"></i></ng-template>
+        <div class="text-center complete-message-centered">
+          <h2 class="mb-2">{{ 'wizard.content-thanks' | translate }}</h2>
+          <p>{{ 'wizard.registered' | translate }}</p>
+        </div>
+      </aw-wizard-completion-step>
+
+    </aw-wizard>
+  </div>
+</div>
+

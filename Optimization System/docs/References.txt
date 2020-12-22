@@ -1,0 +1,9 @@
+https://www.baeldung.com/httpurlconnection-post
+
+http://tutorials.jenkov.com/java-json/gson.html
+
+https://www.geeksforgeeks.org/program-distance-two-points-earth/
+
+https://stackoverflow.com/questions/20152710/gson-get-json-value-from-string
+
+https://developers.google.com/maps/documentation/geocoding/intro

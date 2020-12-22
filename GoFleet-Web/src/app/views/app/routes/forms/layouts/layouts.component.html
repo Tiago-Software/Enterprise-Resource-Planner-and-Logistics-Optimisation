@@ -1,0 +1,356 @@
+<div class="row">
+  <div class="col-12">
+   
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="mb-4">{{'Submit order' | translate}}</h5>
+        <accordion [isAnimated]="true">
+          <accordion-group heading="{{'Identify Client' | translate}}" [panelClass]="'border'">
+           
+            <app-list-page-header [displayMode]="displayMode" [itemOptionsPerPage]="[4,8,12]" [itemsPerPage]="itemsPerPage" [selectAllState]="selectAllState"
+            (changeDisplayMode)="changeDisplayMode($event)"
+            (selectAllChange)="selectAllChange($event)"
+            (itemsPerPageChange)="itemsPerPageChange($event)"
+            (changeOrderBy)="changeOrderBy($event)"
+            (searchKeyUp)="searchKeyUp($event)"
+            >
+          </app-list-page-header>
+
+            
+            <div class="row">
+              <div class="col-12 list" *ngIf="displayMode==='list'">
+                <div [ngClass]="{'card d-flex flex-row mb-3': true, 'active':isSelected(p)}" *ngFor="let p of data; let i=index"
+                >
+                  <div class="d-flex flex-grow-1 min-width-zero">
+                    <div
+                      class="card-body align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
+                      <a class="list-item-heading mb-0 truncate w-40 w-xs-100" href="javascript:;">
+                        {{p.title}}
+                      </a>
+                      <p class="mb-0 text-muted text-small w-15 w-xs-100">{{p.category}}</p>
+                      <p class="mb-0 text-muted text-small w-15 w-xs-100">{{p.date}}</p>
+                      <div class="w-15 w-xs-100">
+                        <span [class]="'badge badge-pill badge-'+ p.statusColor">{{p.status}}</span>
+                      </div>
+                    </div>
+                    <label class="custom-control custom-checkbox mb-1 align-self-center pr-4">
+                      <input type="checkbox" class="custom-control-input" [id]="'customCheck'+i" [checked]="isSelected(p)"
+                        (change)="onSelect(p)">
+                      <label class="custom-control-label" [for]="'customCheck'+i"></label>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="col-12 list" *ngIf="displayMode==='thumb'">
+                <div [ngClass]="{'card d-flex flex-row mb-3': true, 'active':isSelected(p)}" *ngFor="let p of data; let i=index"
+                >
+                  <a class="d-flex" href="javascript:;">
+                    <img [src]="p.img" [alt]="p.title" class="list-thumbnail responsive border-0 card-img-left" />
+                  </a>
+                  <div class="pl-2 d-flex flex-grow-1 min-width-zero">
+                    <div
+                      class="card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
+                      <a href="javascript:;" class="w-40 w-sm-100">
+                        <p class="list-item-heading mb-0 truncate">{{p.title}}</p>
+                      </a>
+                      <p class="mb-0 text-muted text-small w-15 w-sm-100">{{p.category}}</p>
+                      <p class="mb-0 text-muted text-small w-15 w-sm-100">{{p.date}}</p>
+                      <div class="w-15 w-sm-100">
+                        <span [class]="'badge badge-pill badge-'+ p.statusColor">{{p.status}}</span>
+                      </div>
+                    </div>
+                    <label class="custom-control custom-checkbox mb-1 align-self-center pr-4">
+                      <input type="checkbox" class="custom-control-input" [id]="'customCheck'+i" [checked]="isSelected(p)"
+                        (change)="onSelect(p)">
+                      <label class="custom-control-label" [for]="'customCheck'+i"></label>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="col-12 list" *ngIf="displayMode==='image'">
+                <div class="row">
+                  <div class="col-xl-3 col-lg-4 col-12 col-sm-6 mb-4" *ngFor="let p of data; let i=index"
+                  >
+                    <div [ngClass]="{'card': true, 'active':isSelected(p)}">
+                      <div class="position-relative">
+                        <a href="javascript:;"><img class="card-img-top" [src]="p.img" [alt]="p.title"></a>
+                        <span [class]="'badge badge-pill position-absolute badge-top-left badge-'+ p.statusColor">{{p.status}}</span>
+                      </div>
+                      <div class="card-body">
+                          <div class="row">
+                          <div class="col-2">
+                            <div class="custom-control custom-checkbox pl-1">
+                              <label class="custom-control custom-checkbox  mb-0">
+                                <input type="checkbox" class="custom-control-input" [id]="'customCheck'+i" [checked]="isSelected(p)"
+                                  (change)="onSelect(p)">
+                                <label class="custom-control-label" [for]="'customCheck'+i"></label>
+                              </label>
+                            </div>
+                          </div>
+                          <div class="col-10">
+                            <a href="javascript:;">
+                              <p class="list-item-heading mb-4 pt-1">{{p.title}}</p>
+                            </a>
+                            <footer>
+                              <p class="text-muted text-small mb-0 font-weight-light">{{p.date}}</p>
+                            </footer>
+                          </div>
+                       </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="col-12">
+                <pagination [totalItems]="totalItem" [itemsPerPage]="itemsPerPage" [rotate]="true" [maxSize]="5"
+                  [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)" class="justify-content-center"
+                  [customNextTemplate]="nextTemplate" [customPreviousTemplate]="prevTemplate">
+                </pagination>
+              </div>
+            </div>
+            
+            <ng-template #nextTemplate let-disabled="disabled" let-currentPage="currentPage">
+              <i class='simple-icon-arrow-right'></i>
+            </ng-template>
+            <ng-template #prevTemplate let-disabled="disabled" let-currentPage="currentPage">
+              <i class='simple-icon-arrow-left'></i>
+            </ng-template>
+          </accordion-group>
+          <accordion-group heading="{{'Add Item' | translate}}" [panelClass]="'border'">
+           
+            <app-list-page-header [displayMode]="displayMode" [itemOptionsPerPage]="[4,8,12]" [itemsPerPage]="itemsPerPage" [selectAllState]="selectAllState"
+            (changeDisplayMode)="changeDisplayMode($event)"
+            (addNewItem)="showAddNewModal()"
+            (selectAllChange)="selectAllChange($event)"
+            (itemsPerPageChange)="itemsPerPageChange($event)"
+            (changeOrderBy)="changeOrderBy($event)"
+            (searchKeyUp)="searchKeyUp($event)"
+            >
+          </app-list-page-header>
+            <app-add-new-product-modal #addNewModalRef></app-add-new-product-modal>
+
+        
+            
+            <div class="row">
+              <div class="col-12 list" *ngIf="displayMode==='list'">
+                <div [ngClass]="{'card d-flex flex-row mb-3': true, 'active':isSelected(p)}" *ngFor="let p of data; let i=index"
+                >
+                  <div class="d-flex flex-grow-1 min-width-zero">
+                    <div
+                      class="card-body align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
+                      <a class="list-item-heading mb-0 truncate w-40 w-xs-100" href="javascript:;">
+                        {{p.title}}
+                      </a>
+                      <p class="mb-0 text-muted text-small w-15 w-xs-100">{{p.category}}</p>
+                      <p class="mb-0 text-muted text-small w-15 w-xs-100">{{p.date}}</p>
+                      <div class="w-15 w-xs-100">
+                        <span [class]="'badge badge-pill badge-'+ p.statusColor">{{p.status}}</span>
+                      </div>
+                    </div>
+                    <label class="custom-control custom-checkbox mb-1 align-self-center pr-4">
+                      <input type="checkbox" class="custom-control-input" [id]="'customCheck'+i" [checked]="isSelected(p)"
+                        (change)="onSelect(p)">
+                      <label class="custom-control-label" [for]="'customCheck'+i"></label>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="col-12 list" *ngIf="displayMode==='thumb'">
+                <div [ngClass]="{'card d-flex flex-row mb-3': true, 'active':isSelected(p)}" *ngFor="let p of data; let i=index"
+                >
+                  <a class="d-flex" href="javascript:;">
+                    <img [src]="p.img" [alt]="p.title" class="list-thumbnail responsive border-0 card-img-left" />
+                  </a>
+                  <div class="pl-2 d-flex flex-grow-1 min-width-zero">
+                    <div
+                      class="card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
+                      <a href="javascript:;" class="w-40 w-sm-100">
+                        <p class="list-item-heading mb-0 truncate">{{p.title}}</p>
+                      </a>
+                      <p class="mb-0 text-muted text-small w-15 w-sm-100">{{p.category}}</p>
+                      <p class="mb-0 text-muted text-small w-15 w-sm-100">{{p.date}}</p>
+                      <div class="w-15 w-sm-100">
+                        <span [class]="'badge badge-pill badge-'+ p.statusColor">{{p.status}}</span>
+                      </div>
+                    </div>
+                    <label class="custom-control custom-checkbox mb-1 align-self-center pr-4">
+                      <input type="checkbox" class="custom-control-input" [id]="'customCheck'+i" [checked]="isSelected(p)"
+                        (change)="onSelect(p)">
+                      <label class="custom-control-label" [for]="'customCheck'+i"></label>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="col-12 list" *ngIf="displayMode==='image'">
+                <div class="row">
+                  <div class="col-xl-3 col-lg-4 col-12 col-sm-6 mb-4" *ngFor="let p of data; let i=index"
+                  >
+                    <div [ngClass]="{'card': true, 'active':isSelected(p)}">
+                      <div class="position-relative">
+                        <a href="javascript:;"><img class="card-img-top" [src]="p.img" [alt]="p.title"></a>
+                        <span [class]="'badge badge-pill position-absolute badge-top-left badge-'+ p.statusColor">{{p.status}}</span>
+                      </div>
+                      <div class="card-body">
+                          <div class="row">
+                          <div class="col-2">
+                            <div class="custom-control custom-checkbox pl-1">
+                              <label class="custom-control custom-checkbox  mb-0">
+                                <input type="checkbox" class="custom-control-input" [id]="'customCheck'+i" [checked]="isSelected(p)"
+                                  (change)="onSelect(p)">
+                                <label class="custom-control-label" [for]="'customCheck'+i"></label>
+                              </label>
+                            </div>
+                          </div>
+                          <div class="col-10">
+                            <a href="javascript:;">
+                              <p class="list-item-heading mb-4 pt-1">{{p.title}}</p>
+                            </a>
+                            <footer>
+                              <p class="text-muted text-small mb-0 font-weight-light">{{p.date}}</p>
+                            </footer>
+                          </div>
+                       </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="col-12">
+                <pagination [totalItems]="totalItem" [itemsPerPage]="itemsPerPage" [rotate]="true" [maxSize]="5"
+                  [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)" class="justify-content-center"
+                  [customNextTemplate]="nextTemplate" [customPreviousTemplate]="prevTemplate">
+                </pagination>
+              </div>
+            </div>
+            
+            <ng-template #nextTemplate let-disabled="disabled" let-currentPage="currentPage">
+              <i class='simple-icon-arrow-right'></i>
+            </ng-template>
+            <ng-template #prevTemplate let-disabled="disabled" let-currentPage="currentPage">
+              <i class='simple-icon-arrow-left'></i>
+            </ng-template>
+          </accordion-group>
+
+          <accordion-group heading="{{'Order Details' | translate}}" [panelClass]="'border'">
+            <div class="card-body">
+              <h5 class="mb-4">{{ 'forms.grid' | translate }}</h5>
+      
+              <form [formGroup]="orderForm" (ngSubmit)="createOrder()"> 
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="consultant_Id">{{ 'Consultant ID' | translate }}</label>
+                    <input type="number" class="form-control" formControlName ="consultant_Id" placeholder="{{ 'Consultant ID' | translate }}">
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="deliver_By_Date">{{ 'Deliver By:' | translate }}</label>
+                    <input type="date" class="form-control" formControlName ="deliver_By_Date">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="date_placed">{{ 'Date Placed:' | translate }}</label>
+                    <input type="date" class="form-control" formControlName ="date_placed">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="location_Street">{{ 'Street' | translate }}</label>
+                  <input type="text" class="form-control" formControlName ="location_Street" placeholder="{{ 'Street' | translate }}">
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="location_City">{{ 'City' | translate }}</label>
+                    <input type="text" class="form-control" formControlName ="location_City"  placeholder="{{ 'City' | translate }}">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="location_Suburb">{{ 'Suburb' | translate }}</label>
+                    <input type="text" class="form-control" formControlName ="location_Suburb"  placeholder="{{ 'Suburb' | translate }}">
+                  </div>
+                  <div class="form-group col-md-2">
+                    <label for="location_Zip_Code">{{ 'forms.zip' | translate }}</label>
+                    <input type="text" class="form-control" formControlName ="location_Zip_Code" placeholder="{{ 'forms.zip' | translate }}">
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="location_Longitude">{{ 'Latitude:' | translate }}</label>
+                    <input type="text" class="form-control" formControlName ="location_Longitude" placeholder="{{ 'Latitude' | translate }}">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="location_Latitude">{{ 'Longitude:' | translate }}</label>
+                    <input type="text" class="form-control" formControlName ="location_Latitude" placeholder="{{ 'Longitude' | translate }}">
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="client_Date_registered">{{ 'Client Date Registered:' | translate }}</label>
+                    <input type="date" class="form-control" formControlName ="client_Date_registered">
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="client_First_Name">{{ 'First Name:' | translate }}</label>
+                    <input type="text" class="form-control" formControlName ="client_First_Name" placeholder="{{ 'First Name' | translate }}">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="client_Last_Name">{{ 'Last Name:' | translate }}</label>
+                    <input type="text" class="form-control" formControlName ="client_Last_Name" placeholder="{{ 'Last Name' | translate }}">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="client_Id_Number">{{ 'ID Number:' | translate }}</label>
+                    <input type="text" class="form-control" formControlName ="client_Id_Number" placeholder="{{ 'ID Number' | translate }}">
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="client_Business_Name">{{ 'Business Name:' | translate }}</label>
+                    <input type="text" class="form-control" formControlName ="client_Business_Name" placeholder="{{ 'Business Name' | translate }}">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="client_Business_Reg_Number">{{ 'Business Reg Number:' | translate }}</label>
+                    <input type="text" class="form-control" formControlName ="client_Business_Reg_Number" placeholder="{{ 'Business Reg Number' | translate }}">
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="client_Email">{{ 'Email Address:' | translate }}</label>
+                    <input type="text" class="form-control" formControlName ="client_Email" placeholder="{{ 'Email Address' | translate }}">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="client_Contact_Number">{{ 'Contact Number:' | translate }}</label>
+                    <input type="text" class="form-control" formControlName ="client_Contact_Number" placeholder="{{ 'Contact Number' | translate }}">
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary d-block mt-3">{{ 'Add' | translate }}</button>
+
+              </form>
+      
+            </div>
+          </accordion-group>
+
+          <button type="submit" class="btn btn-primary d-block mt-3">{{ 'Submit order' | translate }}</button>
+        </accordion>
+      </div>
+    </div>
+
+
+    <div class="card mb-4">
+    
+    </div>
+
+   
+  </div>
+</div>

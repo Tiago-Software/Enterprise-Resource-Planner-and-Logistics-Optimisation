@@ -1,0 +1,186 @@
+
+<div class="card">
+  <div class="card-body orange-theme">
+    <h5 class="mb-4">{{ 'Order Status' | translate }}</h5>
+    <mat-horizontal-stepper #stepper>
+      
+      <mat-step label="Submitted" state="Submitted">
+      </mat-step>
+      <mat-step label="Assigned" state="Assigned">
+      </mat-step>
+      <mat-step label="En Route" state="EnRoute">
+      </mat-step>
+      <mat-step label="Arrived" state="Arrived">
+      </mat-step>
+      <mat-step label="Complete" state="Complete">
+        <h5 class="mb-4 center">{{ 'Order Completed!' | translate }}</h5>
+      </mat-step>
+    
+     
+    </mat-horizontal-stepper>
+  </div>
+</div>
+<br/>
+
+<div class="row">
+  <div class="col-12 col-md-12 col-xl-8 col-left">
+      <div class="card mb-4">
+          <div class="card-body">
+            <agm-map id="map" class="map-item"  [latitude]="this.origin.lat" [longitude]="this.origin.lng" [zoom]="8" [disableDefaultUI]="false"
+            (mapClick)="mapClicked($event)">
+
+            <agm-marker *ngFor= "let point of points" [latitude]="point.pos.geopoint.latitude" [longitude]="point.pos.geopoint.longitude">
+              <agm-info-window>
+                <h3><strong>{{point.queryMetaData}}</strong></h3>
+            </agm-info-window>
+            </agm-marker>
+
+            <agm-marker *ngIf="driverLocation" [latitude]="driverLocation.latitude" [longitude]="driverLocation.longitude" 
+         
+            [iconUrl]="{
+              url: 'https://www.flaticon.com/premium-icon/icons/svg/2431/2431093.svg',
+              scaledSize: {
+                width: 40,
+                height: 60
+              }
+            }">
+              <agm-info-window>
+                <h3><strong>Driver</strong></h3>
+            </agm-info-window>
+            </agm-marker>
+
+           <agm-direction [origin]="this.origin"  [destination]="direction.destination" [markerOptions]="direction.markerOptions"  [renderOptions]="direction.renderOptions">
+            
+           </agm-direction>
+ 
+         </agm-map>
+          </div>
+      </div>
+  </div>
+
+  <div class="col-12 col-md-12 col-xl-4 col-right">
+    
+    <div class="card">
+      <div >
+      <tabset class="card-tabs">
+        <tab heading="{{'Order Details' | translate}}" class="card-body" >
+          
+              <div>Current Order ID:   <b style="padding-left:15em">{{this.currentOrderID}}</b></div>
+              <br/>   
+              <div>Client Business Name:   <b style="padding-left:3em">{{this.allorders[this.allOrderIndex].client.client_Business_Name}}</b></div>
+              <br/>   
+              <div>From Branch:   <b style="padding-left:10em">{{this.branch.branch_Name}} @ {{this.branch.branch_Location.location_Suburb}}</b></div>
+              <br/>   
+              <div>To:   <b style="padding-left:18em">{{this.allorders[this.allOrderIndex].location.location_Suburb}}</b></div>
+              <br/>   
+              <div>Haversine Distance from Branch:   <b style="padding-left:5em">{{this.orderHaverSineDist}} Km</b></div>
+              <br/>   
+              <div>Route Distance from Branch:   <b style="padding-left:7.7em">{{this.orderBranchDist}} Km</b></div>
+              <br/>   
+              <div>Deliver By Date:   <b style="padding-left:11em">{{this.allorders[this.allOrderIndex].order_Deliver_By_Date.split('T')[0]}}</b></div>
+              <br/>   
+              <div>Deliver By Time:   <b style="padding-left:13em">{{this.allorders[this.allOrderIndex].order_Deliver_By_Date.split('T')[1]}}</b></div>
+       <br/>
+       <br/>   
+       <p class="font-weight-bold">Products Shipped</p>
+          <table class="table table-borderless" *ngIf="currentOrder.items">
+            
+            <thead>
+              <tr>
+                <th scope="col">Item ID</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Volume</th>
+                <th scope="col">Qty</th>
+              </tr>
+            </thead>
+            <tbody >
+              <tr *ngFor="let product of currentOrder.items; let i = index;">
+                <th scope="row">{{i}}</th>
+                <td>{{product.item.stockItem_Name}}</td>
+                <td>{{this.currentOrderItemVolumes[i]}} cm3</td>
+                <td>{{product.quantity_Ordered}}</td>
+              </tr> 
+            </tbody>
+          </table>
+          
+          <div *ngIf="currentOrder.items.length == 0">No products to display</div>
+        </tab>
+    
+        <tab heading="{{'Route Details' | translate}} (19)" class="card-body" >
+          <div *ngIf="!this.allorders[allOrderIndex].order_Delivered && (this.manOrders.length != 0)">
+           <p class="font-weight-bold" *ngIf="this.manOrders[orderRouteIndex].orders[orderIndex].order_Id == currentOrderID">Current Route: {{this.manOrders[orderRouteIndex].route_Id}}</p>
+          <br/>
+          <div *ngIf="this.orderIndex>0">
+          <div>Starting Point | ID:   <b style="padding-left:9em">{{this.manOrders[this.orderRouteIndex].orders[this.orderIndex-1].location.location_Suburb}} {{this.manOrders[this.orderRouteIndex].orders[this.orderIndex-1].order_Id}}</b></div>
+          <br/> 
+          <div>Ending Point | ID:   <b style="padding-left:11em">{{this.manOrders[this.orderRouteIndex].orders[this.orderIndex].location.location_Suburb}} {{this.manOrders[this.orderRouteIndex].orders[this.orderIndex].order_Id}}</b></div>
+          <br/> 
+          <div> Route Duration:   <b style="padding-left:13em">{{this.routeDurationTravel}}</b></div>
+          <br/> 
+          <div>Route Distance:   <b style="padding-left:13em">{{this.orderRouteDist}} Km</b></div>
+          <br/> 
+          <div>Route Driver:   <b style="padding-left:11em">{{this.manOrders[this.orderRouteIndex].driver.emp_First_Name}} {{this.manOrders[this.orderRouteIndex].driver.emp_Last_Name}}</b></div>
+          </div>
+          <br/>
+          <div *ngIf="this.orderIndex==0">
+            <div> Starting Point | Branch:   <b style="padding-left:5em">{{this.branch.branch_Location.location_Suburb}} Phaki</b></div>
+            <br/> 
+            <div> Ending Point | ID:   <b style="padding-left:5em">{{this.manOrders[this.orderRouteIndex].orders[this.orderIndex].location.location_Suburb}} {{this.manOrders[this.orderRouteIndex].orders[this.orderIndex].order_Id}}</b></div>
+            <br/> 
+            <div> Route Duration:   <b style="padding-left:13em">{{this.routeDurationTravel}}</b></div>
+            <br/> 
+            <div>Route Distance from Branch:   <b style="padding-left:5em">{{this.orderRouteDist}} Km</b></div>  
+          </div>
+           
+          <br/>
+          <br/>  
+
+          <table class="table table-borderless" *ngIf="currentOrder.items;else elseBlock">
+            
+            <thead>
+              <tr>
+                <th scope="col">Order ID</th>
+                <th scope="col">Client</th>
+                <th scope="col">Suburb</th>
+              </tr>
+            </thead>
+            <tbody >
+              <tr *ngFor="let order of manOrders[this.orderRouteIndex].orders; let i = index;">
+               <td>{{order.order_Id}}</td>
+               <td><div *ngFor="let allorder of allorders; let o = index"><p *ngIf="allorders[o].order_Id == manOrders[orderRouteIndex].orders[i].order_Id">{{allorders[o].client.client_Business_Name}}</p></div></td>
+               <td>{{order.location.location_Suburb}}</td>
+              </tr> 
+            </tbody>
+          </table>
+        
+      </div>
+    </tab>
+    
+        <tab heading="{{'Schedule' | translate}}" class="card-body">
+          <div> Route Duration:   <b style="padding-left:5em">{{this.routeDurationTravel}}</b></div>
+          <br/>
+          <div> Route Due Time:   <b style="padding-left:5em">{{this.allorders[this.allOrderIndex].order_Deliver_By_Date.toString().split('T')[1]}}</b></div>
+          <br/>
+
+          <div>
+            <b> Sub-Routes</b>
+            <br/>
+            <br/>
+
+            <accordion class="detail-tabs"  [closeOthers]="true" [isAnimated]="true">
+              <accordion-group heading="{{this.instructions[i]}}" [isOpen]="false" *ngFor="let step of routeStepsTravel; let i = index;">
+                
+                <p class="mb-0">
+                  Distance: {{step.distance.text}} <br/>
+                  Duration: {{step.duration.text}} <br/>
+                </p>
+              </accordion-group>
+            </accordion>
+          </div>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+
+  </div>
+</div>

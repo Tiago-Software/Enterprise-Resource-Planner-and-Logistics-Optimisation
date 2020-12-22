@@ -1,0 +1,472 @@
+
+<div class="row">
+  <div class="col-12">
+ 
+    <div>
+      <tabset class="separator-tabs">
+
+        <tab heading="{{'Complete' | translate | uppercase }}">
+          <div class="row">
+            <div class="col-12 mb-4 data-table-rows data-table-responsive">
+              <ngx-datatable #myTable class="expandable" [columnMode]="ColumnMode.force" [rowHeight]="50" [rows]="completerows"
+                [footerHeight]="100" [limit]="itemsPerPage" [headerHeight]="20" (page)="onPage($event)">
+                <ngx-datatable-row-detail [rowHeight]="95" (toggle)="onDetailToggle($event)" cellClass="datatable-row-detail">
+                  <ng-template let-column="column" let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+                    <div class="detail-content">
+                      <div class="d-flex flex-row">
+                        <div>
+                          <div class="text-muted mr-3">
+                            Sales
+                          </div>
+                          <div class="text-muted mr-3">
+                            Stock
+                          </div>
+                          <div class="text-muted mr-3">
+                            Category
+                          </div>
+                          <div class="text-muted mr-3">
+                            Date
+                          </div>
+                        </div>
+                        <div>
+                          <div>
+                            {{ row.order_Id }}
+                          </div>
+                          <div>
+                            {{ row.client.client_First_Name }}
+                          </div>
+                          <div>
+                            {{ row.order_Time_Delivered }}
+                          </div>
+                          <div>
+                            {{ row.date }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </ngx-datatable-row-detail>
+
+                <ngx-datatable-column [width]="10" [resizeable]="false" [sortable]="false" [draggable]="false"
+                  [canAutoResize]="false" class="expand-row-button" headerClass="expand-row-button">
+                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                    <a [class.datatable-icon-right]="!expanded" [class.datatable-icon-down]="expanded" title="Expand/Collapse Row"
+                      (click)="toggleExpandRow(row)" class="d-block d-xl-none c-pointer">
+                      <i class="glyph-icon simple-icon-arrow-down"></i>
+                    </a>
+                  </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="order_Id" [flexGrow]="1.2" [minWidth]="200">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    <a class="c-pointer" (click)="goToOrder(row.order_Id)"  >{{ row.order_Id }}</a>
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Business Name" [flexGrow]="1" headerClass="d-none d-xl-block">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    <span class="d-none d-xl-block">{{ row.client.client_Business_Name}}</span>
+                  </ng-template>
+                </ngx-datatable-column>
+                
+                <ngx-datatable-column name="Total Volume" [flexGrow]="1" headerClass="d-none d-xl-block">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    <span class="d-none d-xl-block">{{ row.order_Total_Volume}} m3</span>
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Location Suburb" [flexGrow]="1" headerClass="d-none d-xl-block">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    <span class="d-none d-xl-block">{{ row.location.location_Suburb}}</span>
+                  </ng-template>
+                </ngx-datatable-column>
+
+                
+                
+                <ngx-datatable-column name="Invoice" [flexGrow]="1" headerClass="d-none d-xl-block">
+                  <ng-template let-row="row" ngx-datatable-cell-template >
+                    <a class="c-pointer" (click)="downloadInvoice(row.order_Id)">Download</a>
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-footer *ngIf="true">
+                  <ng-template ngx-datatable-footer-template let-rowCount="rowCount" let-pageSize="pageSize"
+                    let-selectedCount="selectedCount" let-curPage="curPage" let-offset="offset" let-limit="limit">
+                    <div class="w-100 d-flex justify-content-center">
+                      <pagination [totalItems]="rowCount" [itemsPerPage]="pageSize" [maxSize]="5" (pageChanged)="table.onFooterPage($event)"
+                      [customNextTemplate]="nextTemplate" [customPreviousTemplate]="prevTemplate">
+                      </pagination>
+                    </div>
+                  </ng-template>
+                </ngx-datatable-footer>
+
+              </ngx-datatable>
+            </div>
+          </div>
+
+          
+        <ng-template #nextTemplate let-disabled="disabled" let-currentPage="currentPage">
+          <i class='simple-icon-arrow-right'></i>
+        </ng-template>
+        <ng-template #prevTemplate let-disabled="disabled" let-currentPage="currentPage">
+          <i class='simple-icon-arrow-left'></i>
+        </ng-template>
+        </tab>
+
+
+        <tab heading="{{'Upcoming' | translate | uppercase }}">
+            
+                      
+          <div class="row">
+            <div class="col-12 mb-4 data-table-rows data-table-responsive">
+              <ngx-datatable #myTable class="expandable" [columnMode]="ColumnMode.force" [rowHeight]="50" [rows]="upcomingrows"
+                [footerHeight]="100" [limit]="30" [headerHeight]="20" (page)="onPage($event)">
+                <ngx-datatable-row-detail [rowHeight]="95" (toggle)="onDetailToggle($event)" cellClass="datatable-row-detail">
+                  <ng-template let-column="column" let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template >
+                    <div class="detail-content">
+                      <div class="d-flex flex-row">
+                        <div>
+                          <div class="text-muted mr-3">
+                            Sales
+                          </div>
+                          <div class="text-muted mr-3">
+                            Stock
+                          </div>
+                          <div class="text-muted mr-3">
+                            Category
+                          </div>
+                          <div class="text-muted mr-3">
+                            Date
+                          </div>
+                        </div>
+                        <div>
+                          <div >
+                            {{ row.order_Id }}
+                          </div>
+                          <div>
+                            {{ row.client.client_First_Name }}
+                          </div>
+                          <div>
+                            {{ row.order_Deliver_By_Date }}
+                          </div>
+                          <div>
+                            {{ row.date }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </ngx-datatable-row-detail>
+
+                <ngx-datatable-column [width]="10" [resizeable]="false" [sortable]="false" [draggable]="false"
+                  [canAutoResize]="false" class="expand-row-button" headerClass="expand-row-button">
+                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                    <a [class.datatable-icon-right]="!expanded" [class.datatable-icon-down]="expanded" title="Expand/Collapse Row"
+                      (click)="toggleExpandRow(row)" class="d-block d-xl-none c-pointer">
+                      <i class="glyph-icon simple-icon-arrow-down"></i>
+                    </a>
+                  </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="order_Id" [flexGrow]="1.2" [minWidth]="200">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    <a class="c-pointer" (click)="goToOrder(row.order_Id)">{{ row.order_Id }}</a>
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Business Name" [flexGrow]="1" headerClass="d-none d-xl-block">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    <span class="d-none d-xl-block">{{ row.client.client_Business_Name}}</span>
+                  </ng-template>
+                </ngx-datatable-column>
+
+                
+                <ngx-datatable-column name="Invoice" [flexGrow]="1" headerClass="d-none d-xl-block">
+                  <ng-template let-row="row" ngx-datatable-cell-template >
+                    <a class="c-pointer" (click)="downloadInvoice(row.order_Id)">Download</a>
+                  </ng-template>
+                </ngx-datatable-column>
+                
+                <ngx-datatable-column name="Total Volume" [flexGrow]="1" headerClass="d-none d-xl-block">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    <span class="d-none d-xl-block">{{ row.order_Total_Volume}} m3</span>
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Location Suburb" [flexGrow]="1" headerClass="d-none d-xl-block">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    <span class="d-none d-xl-block">{{ row.location.location_Suburb}}</span>
+                  </ng-template>
+                </ngx-datatable-column>
+
+                
+                <ngx-datatable-column  [flexGrow]="1" headerClass="d-none d-xl-block">
+                  <ng-template let-row="row" ngx-datatable-cell-template >
+                    <a class="c-pointer" (click)="cancelOrder(row.order_Id)">Cancel Order</a>
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-footer *ngIf="true">
+                  <ng-template ngx-datatable-footer-template let-rowCount="rowCount" let-pageSize="pageSize"
+                    let-selectedCount="selectedCount" let-curPage="curPage" let-offset="offset" let-limit="limit">
+                    <div class="w-100 d-flex justify-content-center">
+                      <pagination [totalItems]="rowCount" [itemsPerPage]="30" [maxSize]="5" (pageChanged)="table.onFooterPage($event)"
+                      [customNextTemplate]="nextTemplate" [customPreviousTemplate]="prevTemplate">
+                      </pagination>
+                    </div>
+                  </ng-template>
+                </ngx-datatable-footer>
+
+              </ngx-datatable>
+            </div>
+          </div>
+
+          <ng-template #nextTemplate let-disabled="disabled" let-currentPage="currentPage">
+            <i class='simple-icon-arrow-right'></i>
+          </ng-template>
+          <ng-template #prevTemplate let-disabled="disabled" let-currentPage="currentPage">
+            <i class='simple-icon-arrow-left'></i>
+          </ng-template>
+
+        </tab>
+
+
+
+        <tab heading="{{'Active' | translate | uppercase }}">
+            
+                      
+          <div class="row">
+            <div class="col-12 mb-4 data-table-rows data-table-responsive">
+              <ngx-datatable #myTable class="expandable" [columnMode]="ColumnMode.force" [rowHeight]="50" [rows]="activerows"
+                [footerHeight]="100" [limit]="itemsPerPage" [headerHeight]="20" (page)="onPage($event)">
+                <ngx-datatable-row-detail [rowHeight]="95" (toggle)="onDetailToggle($event)" cellClass="datatable-row-detail">
+                  <ng-template let-column="column" let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template >
+                    <div class="detail-content">
+                      <div class="d-flex flex-row">
+                        <div>
+                          <div class="text-muted mr-3">
+                            Sales
+                          </div>
+                          <div class="text-muted mr-3">
+                            Stock
+                          </div>
+                          <div class="text-muted mr-3">
+                            Category
+                          </div>
+                          <div class="text-muted mr-3">
+                            Date
+                          </div>
+                        </div>
+                        <div>
+                          <div >
+                            {{ row.order_Id }}
+                          </div>
+                          <div>
+                            {{ row.order_Date_Placed }}
+                          </div>
+                          <div>
+                            {{ row.order_Deliver_By_Date }}
+                          </div>
+                          <div>
+                            {{ row.date }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </ngx-datatable-row-detail>
+
+                <ngx-datatable-column [width]="10" [resizeable]="false" [sortable]="false" [draggable]="false"
+                  [canAutoResize]="false" class="expand-row-button" headerClass="expand-row-button">
+                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                    <a [class.datatable-icon-right]="!expanded" [class.datatable-icon-down]="expanded" title="Expand/Collapse Row"
+                      (click)="toggleExpandRow(row)" class="d-block d-xl-none c-pointer">
+                      <i class="glyph-icon simple-icon-arrow-down"></i>
+                    </a>
+                  </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="order_Id" [flexGrow]="1.2" [minWidth]="200">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    <a class="c-pointer" (click)="goToOrder(row.order_Id)">{{ row.order_Id }}</a>
+                  </ng-template>
+                </ngx-datatable-column>
+                
+                <ngx-datatable-column name="Business Name" [flexGrow]="1" headerClass="d-none d-xl-block">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    <span class="d-none d-xl-block">{{ row.client.client_Business_Name}}</span>
+                  </ng-template>
+                </ngx-datatable-column>
+                
+                <ngx-datatable-column name="Total Volume" [flexGrow]="1" headerClass="d-none d-xl-block">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    <span class="d-none d-xl-block">{{ row.order_Total_Volume}} m3</span>
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Location Suburb" [flexGrow]="1" headerClass="d-none d-xl-block">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    <span class="d-none d-xl-block">{{ row.location.location_Suburb}}</span>
+                  </ng-template>
+                </ngx-datatable-column>
+                
+                <ngx-datatable-column name="Invoice" [flexGrow]="1" headerClass="d-none d-xl-block">
+                  <ng-template let-row="row" ngx-datatable-cell-template >
+                    <a class="c-pointer" (click)="downloadInvoice(row.order_Id)">Download</a>
+                  </ng-template>
+                </ngx-datatable-column>
+                
+                <ngx-datatable-column  [flexGrow]="1" headerClass="d-none d-xl-block">
+                  <ng-template let-row="row" ngx-datatable-cell-template >
+                    <a class="c-pointer" (click)="cancelOrder(row.order_Id)">Cancel Order</a>
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-footer *ngIf="true">
+                  <ng-template ngx-datatable-footer-template let-rowCount="rowCount" let-pageSize="pageSize"
+                    let-selectedCount="selectedCount" let-curPage="curPage" let-offset="offset" let-limit="limit">
+                    <div class="w-100 d-flex justify-content-center">
+                      <pagination [totalItems]="rowCount" [itemsPerPage]="pageSize" [maxSize]="5" (pageChanged)="table.onFooterPage($event)"
+                      [customNextTemplate]="nextTemplate" [customPreviousTemplate]="prevTemplate">
+                      </pagination>
+                    </div>
+                  </ng-template>
+                </ngx-datatable-footer>
+
+              </ngx-datatable>
+            </div>
+          </div>
+
+          <ng-template #nextTemplate let-disabled="disabled" let-currentPage="currentPage">
+            <i class='simple-icon-arrow-right'></i>
+          </ng-template>
+          <ng-template #prevTemplate let-disabled="disabled" let-currentPage="currentPage">
+            <i class='simple-icon-arrow-left'></i>
+          </ng-template>
+
+        </tab>
+
+
+        <tab heading="{{'Delayed' | translate | uppercase }}">
+            
+                      
+          <div class="row">
+            <div class="col-12 mb-4 data-table-rows data-table-responsive">
+              <ngx-datatable #myTable class="expandable" [columnMode]="ColumnMode.force" [rowHeight]="50" [rows]="delayedrows"
+                [footerHeight]="100" [limit]="itemsPerPage" [headerHeight]="20" (page)="onPage($event)">
+                <ngx-datatable-row-detail [rowHeight]="95" (toggle)="onDetailToggle($event)" cellClass="datatable-row-detail">
+                  <ng-template let-column="column" let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template >
+                    <div class="detail-content">
+                      <div class="d-flex flex-row">
+                        <div>
+                          <div class="text-muted mr-3">
+                            Sales
+                          </div>
+                          <div class="text-muted mr-3">
+                            Stock
+                          </div>
+                          <div class="text-muted mr-3">
+                            Category
+                          </div>
+                          <div class="text-muted mr-3">
+                            Date
+                          </div>
+                        </div>
+                        <div>
+                          <div >
+                            {{ row.order_Id }}
+                          </div>
+                          <div>
+                            {{ row.client.client_Business_Name }}
+                          </div>
+                          <div>
+                            {{ row.order_Deliver_By_Date }}
+                          </div>
+                          <div>
+                            {{ row.date }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </ngx-datatable-row-detail>
+
+                <ngx-datatable-column [width]="10" [resizeable]="false" [sortable]="false" [draggable]="false"
+                  [canAutoResize]="false" class="expand-row-button" headerClass="expand-row-button">
+                  <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                    <a [class.datatable-icon-right]="!expanded" [class.datatable-icon-down]="expanded" title="Expand/Collapse Row"
+                      (click)="toggleExpandRow(row)" class="d-block d-xl-none c-pointer">
+                      <i class="glyph-icon simple-icon-arrow-down"></i>
+                    </a>
+                  </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="order_Id" [flexGrow]="1.2" [minWidth]="200">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    <a class="c-pointer" (click)="goToOrder(row.order_Id)">{{ row.order_Id }}</a>
+                  </ng-template>
+                </ngx-datatable-column>
+
+                
+                <ngx-datatable-column name="Business Name" [flexGrow]="1" headerClass="d-none d-xl-block">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    <span class="d-none d-xl-block">{{ row.client.client_Business_Name}}</span>
+                  </ng-template>
+                </ngx-datatable-column>
+                
+                <ngx-datatable-column name="Total Volume" [flexGrow]="1" headerClass="d-none d-xl-block">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    <span class="d-none d-xl-block">{{ row.order_Total_Volume}} m3</span>
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Location Suburb" [flexGrow]="1" headerClass="d-none d-xl-block">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    <span class="d-none d-xl-block">{{ row.location.location_Suburb}}</span>
+                  </ng-template>
+                </ngx-datatable-column>
+                
+                
+                <ngx-datatable-column name="Invoice" [flexGrow]="1" headerClass="d-none d-xl-block">
+                  <ng-template let-row="row" ngx-datatable-cell-template >
+                    <a class="c-pointer" (click)="downloadInvoice(row.order_Id)">Download</a>
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column  [flexGrow]="1" headerClass="d-none d-xl-block">
+                  <ng-template let-row="row" ngx-datatable-cell-template >
+                    <a class="c-pointer" (click)="cancelOrder(row.order_Id)">Cancel Order</a>
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-footer *ngIf="true">
+                  <ng-template ngx-datatable-footer-template let-rowCount="rowCount" let-pageSize="pageSize"
+                    let-selectedCount="selectedCount" let-curPage="curPage" let-offset="offset" let-limit="limit">
+                    <div class="w-100 d-flex justify-content-center">
+                      <pagination [totalItems]="rowCount" [itemsPerPage]="pageSize" [maxSize]="5" (pageChanged)="table.onFooterPage($event)"
+                      [customNextTemplate]="nextTemplate" [customPreviousTemplate]="prevTemplate">
+                      </pagination>
+                    </div>
+                  </ng-template>
+                </ngx-datatable-footer>
+
+              </ngx-datatable>
+            </div>
+          </div>
+
+          <ng-template #nextTemplate let-disabled="disabled" let-currentPage="currentPage">
+            <i class='simple-icon-arrow-right'></i>
+          </ng-template>
+          <ng-template #prevTemplate let-disabled="disabled" let-currentPage="currentPage">
+            <i class='simple-icon-arrow-left'></i>
+          </ng-template>
+
+        </tab>
+
+      </tabset>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+

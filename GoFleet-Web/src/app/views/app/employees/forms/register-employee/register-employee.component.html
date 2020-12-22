@@ -1,0 +1,187 @@
+<div class="row">
+  <div class="col-12">
+   
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="mb-4">{{'Register an Employee' | translate}}</h5>
+        <accordion [isAnimated]="true">
+          <accordion-group heading="{{'Select a Branch' | translate}}" [panelClass]="'border'">
+            
+         
+
+         
+            <form [formGroup]="clientorderform" #documentEditForm="ngForm"> 
+              
+<div class="row">
+  <div class="col-12 list" *ngIf="clientdisplayMode==='list'">
+    <div [ngClass]="{'card d-flex flex-row mb-3': false, 'active':isSelectedClient(p)}" *ngFor="let p of branch; let i=index"
+      [contextMenu]="basicClientMenu" [contextMenuSubject]="p">
+      <div class="d-flex flex-grow-1 min-width-zero">
+        <div
+          class="card-body align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
+          <a class="list-item-heading mb-0 truncate w-40 w-xs-100" href="javascript:;">
+            {{p.branch_Name}}
+          </a>
+          <p class="mb-0 text-muted text-small w-15 w-xs-100"></p>
+          <p class="mb-0 text-muted text-small w-15 w-xs-100">{{p.branch_Location.location_Suburb}}</p>
+          <div class="w-15 w-xs-100">
+          </div>
+        </div>
+        <label class="custom-control custom-checkbox mb-1 align-self-center pr-4">
+          <input type="checkbox" class="custom-control-input" [id]="'clientCheck'+i" [checked]="!isSelectedClient(p)"
+            (change)="onSelectClient(p)">
+          <label class="custom-control-label" [for]="'clientCheck'+i"></label>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 list" *ngIf="clientdisplayMode==='thumb'">
+    <div [ngClass]="{'card d-flex flex-row mb-3': false, 'active':isSelectedClient(p)}" *ngFor="let p of clientrows; let i=index"
+      [contextMenu]="basicClientMenu" [contextMenuSubject]="p">
+      <a class="d-flex" href="javascript:;">
+        <img [src]="p.img" [alt]="p.title" class="list-thumbnail responsive border-0 card-img-left" />
+      </a>
+      <div class="pl-2 d-flex flex-grow-1 min-width-zero">
+        <div
+          class="card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
+          <a href="javascript:;" class="w-40 w-sm-100">
+            <p class="list-item-heading mb-0 truncate">{{p.title}}</p>
+          </a>
+          <p class="mb-0 text-muted text-small w-15 w-sm-100">{{p.category}}</p>
+          <p class="mb-0 text-muted text-small w-15 w-sm-100">{{p.date}}</p>
+          <div class="w-15 w-sm-100">
+            <span [class]="'badge badge-pill badge-'+ p.statusColor">{{p.status}}</span>
+          </div>
+        </div>
+        <label class="custom-control custom-checkbox mb-1 align-self-center pr-4">
+          <input type="checkbox" class="custom-control-input" [id]="'clientCheck'+i" [checked]="!isSelectedClient(p)"
+            (change)="onSelectClient(p)">
+          <label class="custom-control-label" [for]="'clientCheck'+i"></label>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 list" *ngIf="clientdisplayMode==='image'">
+    <div class="row">
+      <div class="col-xl-3 col-lg-4 col-12 col-sm-6 mb-4" *ngFor="let p of clientrows; let i=index" [contextMenu]="basicClientMenu"
+        [contextMenuSubject]="p">
+        <div [ngClass]="{'card': false, 'active':isSelectedClient(p)}">
+          <div class="position-relative">
+            <a href="javascript:;"><img class="card-img-top" [src]="p.img" [alt]="p.title"></a>
+            <span
+              [class]="'badge badge-pill position-absolute badge-top-left badge-'+ p.statusColor">{{p.status}}</span>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-2">
+                <div class="custom-control custom-checkbox pl-1">
+                  <label class="custom-control custom-checkbox  mb-0">
+                    <input type="checkbox" class="custom-control-input" [id]="'clientCheck'+i" [checked]="!isSelectedClient(p)"
+                      (change)="onSelectClient(p)">
+                    <label class="custom-control-label" [for]="'clientCheck'+i"></label>
+                  </label>
+                </div>
+              </div>
+              <div class="col-10">
+                <a href="javascript:;">
+                  <p class="list-item-heading mb-4 pt-1">{{p.title}}</p>
+                </a>
+                <footer>
+                  <p class="text-muted text-small mb-0 font-weight-light">{{p.date}}</p>
+                </footer>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+            </form>
+         
+          </accordion-group>
+       
+
+          <accordion-group heading="{{'Employee Information' | translate}}" [panelClass]="'border'">
+            <div class="card-body">
+              <!-- <h5 class="mb-4">{{ '' | translate }}</h5> -->
+      
+              <form [formGroup]="registerEmployeeForm" (ngSubmit)="registerEmployee()" #documentEditForm="ngForm"> 
+                <label for="emp_First_Name">{{ 'Employee name' | translate }}</label>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <input  type="text" class="form-control" formControlName ="emp_First_Name" placeholder="{{ 'First' | translate }}">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <input  type="text" class="form-control" formControlName ="emp_Last_Name" placeholder="{{ 'Last' | translate }}">
+                  </div>
+                </div>
+              <br/>
+
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="emp_Email">{{ 'Email Address:' | translate }}</label>
+                    <input type="text" class="form-control" formControlName ="emp_Email" placeholder="{{ 'Email' | translate }}">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="emp_Password">{{ 'Password:' | translate }}</label>
+                    <input type="password" class="form-control" formControlName ="emp_Password" placeholder="{{ 'Password' | translate }}">
+                  </div>
+                </div>
+
+
+                <div class="form-row">
+                  <div class="form-group col-md-3">
+                    <label>{{ 'Employee Role' | translate }}</label>
+                    <label class="w-100" formControlName="emptypecontrol">
+                        <ng-select appearance="outline" (change)="this.empType()" [searchable]="false" formControlName="emptypecontrol" >
+                            <ng-option  *ngFor="let item of categories" [value]="item.value" >
+                                {{item.label}}
+                            </ng-option>
+                        </ng-select>
+                    </label>
+                  </div>
+              </div>
+
+              <div class="form-row" *ngIf="this.driverAuth">
+                <div class="form-group col-md-6">
+                  <label for="dl_Licence_Number">{{ 'Driver License #:' | translate }}</label>
+                  <input type="text" class="form-control" formControlName ="dl_Licence_Number" placeholder="{{ 'Number' | translate }}">
+                </div>
+
+                <div class="form-group col-md-3">
+                  <label for="dl_Code">{{ 'License Code:' | translate }}</label>
+                  <input type="text" class="form-control" formControlName ="dl_Code" placeholder="{{ 'Vehicle Code' | translate }}">
+                </div>
+
+                <div class="form-group col-md-3">
+                  <label for="dl_Valid_Until">{{ 'License Expiry Date:' | translate }}</label>
+                  <input type="date" class="form-control" formControlName ="dl_Valid_Until" placeholder="{{ 'Expiry Date' | translate }}">
+                </div>
+                
+              </div>
+
+                <button type="submit" class="btn btn-primary d-block mt-3" >
+              {{ 'Register' | translate }}</button>
+              </form>
+      
+            </div>
+          </accordion-group>
+
+        </accordion>
+      </div>
+    </div>
+
+
+    <div class="card mb-4">
+    
+    </div>
+
+   
+  </div>
+</div>

@@ -1,0 +1,140 @@
+
+
+    <div class="card mb-4">
+
+      <br/>      
+      
+      <button type="button" class="btn btn-primary btn-block mb-1" *ngIf="this.manOrders.length == 0" (click)="optimise()">{{'Generate Optimal Routes' | translate}}</button>
+      
+      <accordion [isAnimated]="true" *ngIf="manOrders.length > 0">
+          
+        <accordion-group heading="{{'Toggle Routes'}}" [panelClass]="'border'" >   
+            
+          <div class="row">
+              <div class="col-12 list" *ngIf="routesdisplayMode==='list'">
+                <div [ngClass]="{'card d-flex flex-row mb-3': false, 'active':isSelectedRoute(p)}" *ngFor="let p of manOrders; let routeIndex=index; "
+                  >
+                  <div class="d-flex flex-grow-1 min-width-zero">
+                    <div
+                      class="card-body align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
+                      <a class="list-item-heading mb-0 truncate w-40 w-xs-100"  href="javascript:;">
+                        <div class="w-15 w-xs-100">
+                        <span title="Route ID" [class]="'badge badge-pill'" [style.backgroundColor]="this.str[routeIndex].route_color" [style.color]="'#ffffff'" >{{p.route_Id}}</span>
+                        </div>
+                      </a>
+                      <p *ngIf="p.driver" title="Driver" class="mb-0 text-muted text-small w-15 w-xs-100">{{p.driver.emp_First_Name}} {{p.driver.emp_Last_Name}}</p>
+                      <p title="Route Completed" class="mb-0 text-muted text-small w-15 w-xs-100">{{p.route_Completed}}</p>
+                    </div>
+                    <label class="custom-control custom-checkbox mb-1 align-self-center pr-4">
+                      <input type="checkbox" class="custom-control-input" [id]="'customCheck'+routeIndex" [checked]="isSelectedRoute(p)"
+                        (change)="onSelectRoute(p)">
+                      <label class="custom-control-label" [for]="'customCheck'+routeIndex"></label>
+                    </label>
+                    <a  title="Expand/Collapse Row" (click)="isRouteCollapsed[routeIndex] = !isRouteCollapsed[routeIndex]"
+                      [attr.aria-expanded]="!isRouteCollapsed[routeIndex]" aria-controls="collapseBasic" class="align-self-center pr-4"> 
+                    <i class="glyph-icon simple-icon-arrow-down"></i>
+                    </a>
+                   </div>
+                   <div
+                   class="card-body align-self-center min-width-zero align-items-md-center">
+                   
+                   <div id="collapseBasic" [collapse]="isRouteCollapsed[routeIndex]">
+        
+                    <div class="row">
+                      <div class="col-12 list" *ngIf="orderdisplayMode==='list'">
+                        <div [ngClass]="{'card d-flex flex-row mb-3': true}" *ngFor="let p of manOrders[routeIndex].orders; let orderIndex=index"
+                          >
+                          <div class="d-flex flex-grow-1 min-width-zero">
+                            <div
+                              class="card-body align-self-center d-flex flex-column flex-md-row min-width-zero align-items-md-center">
+                              <a title="Order ID" class="list-item-heading mb-0 truncate w-40 w-xs-100" href="javascript:;" (click)="goToOrder(p.order_Id)">
+                                {{p.order_Id}}
+                              </a>
+                              <p class="mb-0 text-muted text-small w-15 w-xs-100">{{p.order_Sequence_Number}}</p>
+                              <p class="mb-0 text-muted text-small w-15 w-xs-100">{{p.location.location_Suburb}}</p>   
+                               <!-- <p title="Distance" class="mb-0 text-muted text-small w-15 w-xs-100">{{this.resultant[routeIndex].routes[routeIndex].legs[orderIndex].distance.text}}</p> -->
+                             
+                               <div class="w-15 w-xs-100">
+                                <a title="Cancel Order" href="javascript:;" (click)="cancelorderModal(cancelordertemplate)">
+                                  Cancel                               
+                                </a>
+                               </div>
+
+                              <ng-template #cancelordertemplate>
+                                <div class="modal-header">
+                              <br #cancelordertemplate>
+                                <br class="modal-header">
+                                <h1 class="modal-title pull-left">{{"Permanent Delay"}} </h1>
+                                 
+                                  <button type="button" class="close pull-right" aria-label="Close" (click)="cancelOrdermodalRef.hide()">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+          
+          
+                                </div>
+                                <div class="modal-body">
+                                  
+                              
+                                  <h4 class="modal-title pull-left">{{"Cancel order: " + p.order_Id}} </h4>
+                                  
+                               
+          
+                                  <form [formGroup]="cancelorderform" #documentEditForm="ngForm"> 
+            
+                                    <div class="row">
+          
+                                        <label>{{ 'Email Custom Message' | translate }}</label>
+                                        <textarea formControlName="txtcancelMsg" class="form-control" rows="3"></textarea>
+                                     
+          
+                                    </div>
+                                    
+                                  </form>
+                                  
+                                  <button type="submit" class="btn btn-primary d-block mt-3" (click)="this.cancelOrder(p.order_Id)">
+                                    {{ 'Send to Clients' | translate }}</button>
+          
+                                  <ng-template #nextTemplate let-disabled="disabled" let-currentPage="productPage">
+                                    <i class='simple-icon-arrow-right'></i>
+                                  </ng-template>
+                                  <ng-template #prevTemplate let-disabled="disabled" let-currentPage="productPage">
+                                    <i class='simple-icon-arrow-left'></i>
+                                  </ng-template>
+                              
+                                </div>
+                              </ng-template>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                     </div>
+                    </div>
+                  </div>
+                  </div>            
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary d-block mt-3" *ngIf="manOrders.length>0" (click)="this.deleteSelectedRoutes()">
+                {{ 'Delete Selected Routes' | translate }}</button>
+                
+        </accordion-group>
+        </accordion>
+
+
+
+      <div class="card-body">
+        <agm-map id="map" class="map-item"  [latitude]="-25.925063" [longitude]="28.191817" [zoom]="8" [disableDefaultUI]="false"
+           (mapClick)="mapClicked($event)">
+          <agm-marker  [latitude]="this.branch.branch_Location.location_Latitude" [longitude]="this.branch.branch_Location.location_Longitude">
+            <agm-info-window>
+                <h3><strong>{{this.branch.branch_Name}}</strong></h3>
+            </agm-info-window>
+          </agm-marker>
+
+          <agm-direction *ngFor="let dir of dirs; let i = index" [origin]="dir.origin" [destination]="dir.destination" [waypoints]="dir.waypoints" [renderOptions]="dir.renderOptions">
+         
+          </agm-direction>
+
+        </agm-map>
+      </div>
+    </div>

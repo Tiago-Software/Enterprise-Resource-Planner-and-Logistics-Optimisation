@@ -1,0 +1,416 @@
+<nav class="navbar fixed-top">
+  <div class="d-flex align-items-center navbar-left">
+    <a (click)="menuButtonClick($event, sidebar.menuClickCount, sidebar.containerClassnames); false;"
+      href="javascript:;" class="menu-button d-none d-md-block">
+      <svg class="main" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 9 17">
+        <rect x="0.48" y="0.5" width="7" height="1" />
+        <rect x="0.48" y="7.5" width="7" height="1" />
+        <rect x="0.48" y="15.5" width="7" height="1" />
+      </svg> {{" "}}
+      <svg class="sub" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 17">
+        <rect x="1.56" y="0.5" width="16" height="1" />
+        <rect x="1.56" y="7.5" width="16" height="1" />
+        <rect x="1.56" y="15.5" width="16" height="1" />
+      </svg>
+    </a>
+
+    <a (click)="mobileMenuButtonClick($event, sidebar.containerClassnames)" href="javascript:;"
+      class="menu-button-mobile d-xs-block d-sm-block d-md-none">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 17">
+        <rect x="0.5" y="0.5" width="25" height="1" />
+        <rect x="0.5" y="7.5" width="25" height="1" />
+        <rect x="0.5" y="15.5" width="25" height="1" />
+      </svg>
+    </a>
+
+    <div class="btn-group ml-2" dropdown *ngIf="!isSingleLang">
+      <button dropdownToggle type="button" class="language-button dropdown-toggle btn btn-light btn-sm">
+        {{currentLanguage | uppercase}} <span class="caret"></span>
+      </button>
+      <ul *dropdownMenu class="dropdown-menu" role="menu">
+        <li role="menuitem" *ngFor="let item of languages" (click)="onLanguageChange(item)"><a class="dropdown-item"
+            href="javascript:;">{{item.label}}</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <a class="navbar-logo" href="/">
+    <span class="logo-mobile d-none d-xs-block"></span>
+  </a>
+
+  <div class="navbar-right">
+    <div class="header-icons d-inline-block align-middle">
+
+      <div class="d-none d-md-inline-block align-text-bottom mr-1">
+        <div class="custom-control custom-switch" tooltip="Dark Mode" placement="left">
+          <input type="checkbox" class="custom-control-input" id="darkModeSwitch" [checked]="isDarkModeActive"
+            (change)="onDarkModeChange($event)">
+          <label class="custom-control-label" for="darkModeSwitch"></label>
+        </div>
+      </div>
+
+      <div class="position-relative d-none d-sm-inline-block">
+        <div dropdown>
+          <button dropdownToggle type="button" class="header-icon btn btn-empty">
+            <i class="simple-icon-grid"></i>
+          </button>
+          <div *dropdownMenu class="dropdown-menu dropdown-menu-right mt-3" role="menu" aria-labelledby="button-basic"
+            id="iconMenuDropdown">
+            <a href="javascript:;" class="icon-menu-item">
+              <i class="iconsminds-equalizer d-block"></i>
+              <span>Settings</span>
+            </a>
+
+            <a href="javascript:;" class="icon-menu-item">
+              <i class="iconsminds-male-female d-block"></i>
+              <span>Users</span>
+            </a>
+
+            <a href="javascript:;" class="icon-menu-item">
+              <i class="iconsminds-puzzle d-block"></i>
+              <span>Components</span>
+            </a>
+
+            <a href="javascript:;" class="icon-menu-item">
+              <i class="iconsminds-bar-chart-4 d-block"></i>
+              <span>Profits</span>
+            </a>
+
+            <a href="javascript:;" class="icon-menu-item">
+              <i class="iconsminds-file d-block"></i>
+              <span>Surveys</span>
+            </a>
+
+            <a href="javascript:;" class="icon-menu-item">
+              <i class="iconsminds-suitcase d-block"></i>
+              <span>Tasks</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="position-relative d-inline-block"*ngIf="this.employeeRole()=='Manager'">
+
+        <div dropdown>
+          <button id="button-basic" dropdownToggle type="button" id="notificationButton"
+            class="header-icon btn btn-empty">
+            <i class="simple-icon-bell"></i>
+            <!-- this is the count for the notifications -->
+            <span class="count">{{this.manNotifyCount}}</span>
+          </button>
+          <div id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right mt-3"
+            id="notificationDropdown">
+            <perfect-scrollbar>
+
+
+
+
+              <div class="d-flex flex-row mb-3 pb-3 border-bottom">
+                <a href="javascript:;">
+                  <img src="/assets/img/profile-pic-l-2.jpg" alt="Notification Image"
+                    class="img-thumbnail list-thumbnail xsmall border-0 rounded-circle" />
+                </a>
+                <div class="pl-3">
+                  <a href="javascript:;">
+                    
+                   
+                    
+
+<!-- assign driver notification -->
+
+                    <label  (click)="assigndriverModal(assigndrivertemplate)"><p class="font-weight-medium mb-1">Drivers have unassigned orders!</p> </label>
+                    <br>
+                    <ng-template #assigndrivertemplate>
+                      <div class="modal-header">
+
+                        <h4 class="modal-title pull-left">{{routes.length + " unassigned routes: " }} </h4>
+                     
+                        <div *ngFor="let p of routes; let i=index">
+                          <h4>{{p.route_Id + ","}} <br/></h4>
+                        </div> 
+
+
+                    <br #assigndrivertemplate>
+                      <br class="modal-header">
+                 
+                        <button type="button" class="close pull-right" aria-label="Close" (click)="assignDrivermodalRef.hide()">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+
+                      </div>
+                      
+                      <div class="modal-body">
+                        
+                    
+
+
+                        <form [formGroup]="assigndriverform" #documentEditForm="ngForm"> 
+	
+                          <div class="row">
+                            <div class="col-12 list" *ngIf="driverdisplayMode==='list'">
+                              <div [ngClass]="{'card d-flex flex-row mb-3': false, 'active':isSelectedDriver(p)}" *ngFor="let p of driverdata; let i=index"
+                              >
+                                <div class="d-flex flex-grow-1 min-width-zero">
+                                  <div
+                                  class="card-body align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
+                                    <a class="list-item-heading mb-0 truncate w-40 w-xs-100" href="javascript:;">
+                                      {{p.emp_First_Name + ' ' + p.emp_Last_Name}} 
+                                    </a>
+                                    <input type="number" class="form-controlqty" [id]="'productQty'+i" formControlName ="order_Client_Product" placeholder="{{ 'Route ID' | translate }}">
+                                    <!-- <p class="mb-0 text-muted text-small w-15 w-xs-100">{{p.category}}</p> 
+                                    <p class="mb-0 text-muted text-small w-15 w-xs-100">{{p.date}}</p>-->
+                                    <div class="w-15 w-xs-100">
+                                      <!-- <span [class]="'badge badge-pill badge-'+ p.statusColor">{{p.status}}</span> -->
+                                    </div>
+                                  </div>
+                                  <label class="custom-control custom-checkbox mb-1 align-self-center pr-4">
+                                    <input type="checkbox" class="custom-control-input" [id]="'productCheck'+i" [checked]="!isSelectedDriver(p)"
+                                    (change)="onSelectDriver(p)">
+                                    <label class="custom-control-label" [for]="'productCheck'+i"></label>
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <div class="col-12 list" *ngIf="driverdisplayMode==='thumb'">
+                              <div [ngClass]="{'card d-flex flex-row mb-3': false, 'active':isSelectedDriver(p)}" *ngFor="let p of driverdata; let i=index"
+                              >
+                                <a class="d-flex" href="javascript:;">
+                                  <img [src]="p.img" [alt]="p.title" class="list-thumbnail responsive border-0 card-img-left" />
+                                </a>
+                                <div class="pl-2 d-flex flex-grow-1 min-width-zero">
+                                  <div
+                                  class="card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
+                                    <a href="javascript:;" class="w-40 w-sm-100">
+                                      <p class="list-item-heading mb-0 truncate">{{p.title}}</p>
+                                    </a>
+                                    <p class="mb-0 text-muted text-small w-15 w-sm-100">{{p.category}}</p>
+                                    <p class="mb-0 text-muted text-small w-15 w-sm-100">{{p.date}}</p>
+                                    <div class="w-15 w-sm-100">
+                                      <span [class]="'badge badge-pill badge-'+ p.statusColor">{{p.status}}</span>
+                                    </div>
+                                  </div>
+                                  <label class="custom-control custom-checkbox mb-1 align-self-center pr-4">
+                                    <input type="checkbox" class="custom-control-input" [id]="'productCheck'+i" [checked]="!isSelectedDriver(p)"
+                                    (change)="onSelectDriver(p)">
+                                    <label class="custom-control-label" [for]="'productCheck'+i"></label>
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <div class="col-12 list" *ngIf="driverdisplayMode==='image'">
+                              <div class="row">
+                                <div class="col-xl-3 col-lg-4 col-12 col-sm-6 mb-4" *ngFor="let p of driverdata; let i=index" >
+                                  <div [ngClass]="{'card': false, 'active':isSelectedDriver(p)}">
+                                    <div class="position-relative">
+                                      <a href="javascript:;"><img class="card-img-top" [src]="p.img" [alt]="p.title"></a>
+                                      <span
+                                      [class]="'badge badge-pill position-absolute badge-top-left badge-'+ p.statusColor">{{p.status}}</span>
+                                    </div>
+                                    <div class="card-body">
+                                      <div class="row">
+                                        <div class="col-2">
+                                          <div class="custom-control custom-checkbox pl-1">
+                                            <label class="custom-control custom-checkbox  mb-0">
+                                              <input type="checkbox" class="custom-control-input" [id]="'productCheck'+i" [checked]="!isSelectedDriver(p)"
+                                              (change)="onSelectDriver(p)">
+                                              <label class="custom-control-label" [for]="'productCheck'+i"></label>
+                                            </label>
+                                          </div>
+                                        </div>
+                                        <div class="col-10">
+                                          <a href="javascript:;">
+                                            <p class="list-item-heading mb-4 pt-1">{{p.title}}</p>
+                                          </a>
+                                          <footer>
+                                            <p class="text-muted text-small mb-0 font-weight-light">{{p.date}}</p>
+                                          </footer>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <div class="col-12">
+                              <pagination [totalItems]="totalProductItem" [itemsPerPage]="productitemsPerPage" [rotate]="true" [maxSize]="5"
+                              [(ngModel)]="productPage" (pageChanged)="pageProductChanged($event)" class="justify-content-center"
+                              [customNextTemplate]="nextTemplate" [customPreviousTemplate]="prevTemplate">
+                              </pagination>
+                            </div>
+                          </div>
+                          
+                        </form>
+                        
+                        <button type="submit" class="btn btn-primary d-block mt-3" (click)="this.assignDrivers()">
+                          {{ 'Assign Drivers' | translate }}</button>
+
+                        <ng-template #nextTemplate let-disabled="disabled" let-currentPage="productPage">
+                          <i class='simple-icon-arrow-right'></i>
+                        </ng-template>
+                        <ng-template #prevTemplate let-disabled="disabled" let-currentPage="productPage">
+                          <i class='simple-icon-arrow-left'></i>
+                        </ng-template>
+                    
+                      </div>
+                    </ng-template>
+
+
+
+
+
+                    <p class="text-muted mb-0 text-small">09.04.2018 - 12:45</p>
+                  </a>
+                </div>
+              </div>
+
+
+
+
+
+
+
+              <div class="d-flex flex-row mb-3 pb-3 border-bottom">
+                <a href="javascript:;">
+                  <img src="/assets/img/profile-pic-l-2.jpg" alt="Notification Image"
+                    class="img-thumbnail list-thumbnail xsmall border-0 rounded-circle" />
+                </a>
+                <div class="pl-3">
+                  <a href="javascript:;">
+                    
+                   
+                    
+
+<!-- delayed order notification -->
+
+                    <label  (click)="delayedorderModal(delayedordertemplate)"><p class="font-weight-medium mb-1">Inform clients with their delayed orders</p> </label>
+                    <br>
+                    <ng-template #delayedordertemplate>
+                      <div class="modal-header">
+                    <br #delayedordertemplate>
+                      <br class="modal-header">
+                      <h1 class="modal-title pull-left">{{"Permanent Delay"}} </h1>
+                       
+                        <button type="button" class="close pull-right" aria-label="Close" (click)="delayedOrdermodalRef.hide()">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+
+
+                      </div>
+                      <div class="modal-body">
+                        
+                    
+                        <h4 class="modal-title pull-left">{{this.getdelayedorders.order_Ids.length + " delayed order: " + this.getdelayedorders.order_Ids.toString() + ","}} </h4>
+                        <h4 class="modal-title pull-left">{{" delayed route reason: " + this.getdelayedorders.route_Delay_Reason }} </h4>
+                     
+
+                        <form [formGroup]="delayedordersform" #documentEditForm="ngForm"> 
+	
+                          <div class="row">
+
+                              <label>{{ 'Email Custom Message' | translate }}</label>
+                              <textarea formControlName="txtDelayedMsg" class="form-control" rows="3"></textarea>
+                           
+
+                          </div>
+                          
+                        </form>
+                        
+                        <button type="submit" class="btn btn-primary d-block mt-3" (click)="this.delayClientsOrder()">
+                          {{ 'Send to Clients' | translate }}</button>
+
+                        <ng-template #nextTemplate let-disabled="disabled" let-currentPage="productPage">
+                          <i class='simple-icon-arrow-right'></i>
+                        </ng-template>
+                        <ng-template #prevTemplate let-disabled="disabled" let-currentPage="productPage">
+                          <i class='simple-icon-arrow-left'></i>
+                        </ng-template>
+                    
+                      </div>
+                    </ng-template>
+
+
+
+
+
+                    <p class="text-muted mb-0 text-small">09.04.2018 - 12:45</p>
+                  </a>
+                </div>
+              </div>
+              
+            
+             
+            </perfect-scrollbar>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="position-relative d-inline-block"*ngIf="this.employeeRole()=='Consultant'">
+
+        <div dropdown>
+          <button id="button-basic" dropdownToggle type="button" id="notificationButton"
+            class="header-icon btn btn-empty">
+            <i class="simple-icon-bell"></i>
+            <span class="count">{{this.conNotifyCount}}</span>
+          </button>
+          <div id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right mt-3"
+            id="notificationDropdown">
+            <perfect-scrollbar>
+              
+            </perfect-scrollbar>
+          </div>
+        </div>
+      </div>
+
+
+
+      <button class="header-icon btn btn-empty d-none d-sm-inline-block" type="button" id="fullScreenButton"
+        (click)="fullScreenClick()">
+        <i *ngIf="!isFullScreen" class="simple-icon-size-fullscreen"></i>
+        <i *ngIf="isFullScreen" class="simple-icon-size-actual"></i>
+      </button>
+
+    </div>
+
+    <div class="user d-inline-block" dropdown *ngIf="this.employeeRole()=='Consultant'">
+      <button class="btn btn-empty p-0" type="button" dropdownToggle>
+        <span class="name">{{displayName}}</span>
+        <span>
+          <img alt="Profile Picture" src="/assets/img/profile-pic-l.jpg" />
+        </span>
+      </button>
+
+      <div class="dropdown-menu dropdown-menu-right mt-3" *dropdownMenu role="menu">
+        <a class="dropdown-item c-pointer">Account</a>
+        <a class="dropdown-item c-pointer">Features</a>
+        <a class="dropdown-item c-pointer">History</a>
+        <a class="dropdown-item c-pointer">Support</a>
+        <li class="divider dropdown-divider"></li>
+        <a class="dropdown-item c-pointer" (click)="onSignOut()">Sign out</a>
+      </div>
+    </div>
+
+    <div class="user d-inline-block" dropdown *ngIf="this.employeeRole()=='Manager'">
+      <button class="btn btn-empty p-0" type="button" dropdownToggle>
+        <span class="name">{{displayName}}</span>
+        <span>
+          <img alt="Profile Picture" src="/assets/img/profile-pic-l-2.jpg" />
+        </span>
+      </button>
+
+      <div class="dropdown-menu dropdown-menu-right mt-3" *dropdownMenu role="menu">
+        <a class="dropdown-item c-pointer">Account</a>
+        <a class="dropdown-item c-pointer">Features</a>
+        <a class="dropdown-item c-pointer">History</a>
+        <a class="dropdown-item c-pointer">Support</a>
+        <li class="divider dropdown-divider"></li>
+        <a class="dropdown-item c-pointer" (click)="onSignOut()">Sign out</a>
+      </div>
+    </div>
+
+  </div>
+</nav>
